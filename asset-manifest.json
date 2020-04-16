@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/exploration-bingo/static/css/main.0b4d2789.chunk.css",
+    "main.js": "/exploration-bingo/static/js/main.6c476a31.chunk.js",
+    "main.js.map": "/exploration-bingo/static/js/main.6c476a31.chunk.js.map",
+    "runtime-main.js": "/exploration-bingo/static/js/runtime-main.e157e079.js",
+    "runtime-main.js.map": "/exploration-bingo/static/js/runtime-main.e157e079.js.map",
+    "static/js/2.b1b4a4ad.chunk.js": "/exploration-bingo/static/js/2.b1b4a4ad.chunk.js",
+    "static/js/2.b1b4a4ad.chunk.js.map": "/exploration-bingo/static/js/2.b1b4a4ad.chunk.js.map",
+    "index.html": "/exploration-bingo/index.html",
+    "precache-manifest.a6a71e9f43ef0b2fb07c116fcb9bebe5.js": "/exploration-bingo/precache-manifest.a6a71e9f43ef0b2fb07c116fcb9bebe5.js",
+    "service-worker.js": "/exploration-bingo/service-worker.js",
+    "static/css/main.0b4d2789.chunk.css.map": "/exploration-bingo/static/css/main.0b4d2789.chunk.css.map",
+    "static/js/2.b1b4a4ad.chunk.js.LICENSE.txt": "/exploration-bingo/static/js/2.b1b4a4ad.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e157e079.js",
+    "static/js/2.b1b4a4ad.chunk.js",
+    "static/css/main.0b4d2789.chunk.css",
+    "static/js/main.6c476a31.chunk.js"
+  ]
+}
