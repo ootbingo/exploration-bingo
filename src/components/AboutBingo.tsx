@@ -10,7 +10,7 @@ function AboutBingo() {
             <div id="newcards"></div>
             <div style={{ clear: "both" }}>
                 <div style={{ marginTop: "16px" }}>
-                    <a className="newcard" href="/">
+                    <a className="newcard" href=".">
                         New card
                     </a>
                 </div>
