@@ -78,7 +78,7 @@ class BingoBoard extends React.Component<BoardProps, BoardState> {
     }
 
     getStartTiles() {
-        return this.props.seed % 2 === 0 ? [6, 13] : [8, 11]
+        return this.props.seed % 2 === 0 ? [6, 18] : [8, 16]
     }
 
     getAdjacentTiles(i: number): number[] {
