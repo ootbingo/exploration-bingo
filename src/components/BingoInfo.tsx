@@ -1,16 +1,19 @@
 import React from "react"
+import {BingoVersion} from "../generator/bingo-versions";
 
 interface BingoInfoProps {
     seed: number;
+    version: BingoVersion;
     goalsCompleted: number;
 }
 
 function BingoInfo(props: BingoInfoProps) {
-
-
     return (
         <div id="results">
-            <p>Seed: <strong>{props.seed}</strong></p>
+            <div id="cardInfo">
+                <p>Version: <strong>{props.version}</strong></p>
+                <p id="seed">Seed: <strong>{props.seed}</strong></p>
+            </div>
             <p>Completed goals: <strong>{props.goalsCompleted}</strong></p>
         </div>
     )

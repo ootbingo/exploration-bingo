@@ -1,12 +1,13 @@
 import ootBingoGenerator from "./generator";
-import { bingoList } from "./goallist";
+import {bingoListsByVersion, BingoVersion} from "./bingo-versions";
 
 interface Goal {
     name: string,
 }
 
-export function generateBoard(seed: number): string[] {
-    var bingoFunc = ootBingoGenerator;
+export function generateBoard(seed: number, version: BingoVersion): string[] {
+    const bingoFunc = ootBingoGenerator;
+    const bingoList = bingoListsByVersion[version];
 
     const bingoOpts = {
         seed: seed.toString(),
@@ -14,8 +15,8 @@ export function generateBoard(seed: number): string[] {
         lang: "name",
     };
 
-    const board = (bingoFunc(bingoList, bingoOpts) as unknown as Goal[])
-        .map(goal => goal.name);
+    const goals = bingoFunc(bingoList, bingoOpts) as unknown as Goal[]
+    const board = goals.map(goal => goal.name);
     board.shift();
     return board;
 }
