@@ -1,5 +1,8 @@
 import React from "react"
+import {DEFAULT_VERSION, isBingoVersion} from "../generator/bingo-versions";
 
+const urlVersion = new URLSearchParams(window.location.search).get("version");
+const version = isBingoVersion(urlVersion) ? urlVersion : DEFAULT_VERSION;
 
 function AboutBingo() {
 
@@ -10,7 +13,7 @@ function AboutBingo() {
             <div id="newcards"/>
             <div style={{clear: "both"}}>
                 <div style={{marginTop: "16px"}}>
-                    <a className="newcard" href=".">
+                    <a className="newcard" href={`?version=${version}`}>
                         New card
                     </a>
                 </div>
