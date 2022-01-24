@@ -4,10 +4,10 @@ interface PopoutProps {
     name: string
 }
 
-function PopoutTitle(props:PopoutProps) {
+function PopoutTitle(props: PopoutProps) {
 
     return (
-        <td className = "popout">
+        <td className="popout">
             {props.name}
         </td>
     )

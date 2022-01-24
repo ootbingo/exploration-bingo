@@ -28,15 +28,15 @@ class BingoBoard extends React.Component<BoardProps, BoardState> {
         if (newColor === "green") {
             this.props.onGreen();
         }
-        if (newColor=== "red") {
+        if (newColor === "red") {
             this.props.onRed();
         }
     }
 
     incrementCounter(i: number) {
-        let newCounters = this.state.counters
+        const newCounters = this.state.counters
         newCounters[i] = newCounters[i] + 1
-        this.setState({ counters: newCounters })
+        this.setState({counters: newCounters})
     }
 
     calculateRows(i: number) {
@@ -78,11 +78,11 @@ class BingoBoard extends React.Component<BoardProps, BoardState> {
     }
 
     getStartTiles() {
-        return this.props.seed % 2 === 0? [6,13] : [8, 11]
+        return this.props.seed % 2 === 0 ? [6, 13] : [8, 11]
     }
 
     getAdjacentTiles(i: number): number[] {
-        let adjacents: number[] = [];
+        const adjacents: number[] = [];
         if (i > 4) {
             adjacents.push(i - 5);
         }
@@ -102,10 +102,10 @@ class BingoBoard extends React.Component<BoardProps, BoardState> {
 
         const createBingoTile = (i: number) => {
             return <BingoTile
-                rows   ={this.calculateRows(i)}
-                color  ={this.calculateColor(i)}
-                goal   ={this.props.goals[i]}
-                hidden ={this.isHidden(i)}
+                rows={this.calculateRows(i)}
+                color={this.calculateColor(i)}
+                goal={this.props.goals[i]}
+                hidden={this.isHidden(i)}
                 onClick={() => this.onTileClick(i)}
             />
         }
@@ -113,36 +113,36 @@ class BingoBoard extends React.Component<BoardProps, BoardState> {
             <div id="results">
                 <table id="bingo">
                     <tr>
-                        <PopoutTile name="tl-br" />
-                        <PopoutTile name="col1" />
-                        <PopoutTile name="col2" />
-                        <PopoutTile name="col3" />
-                        <PopoutTile name="col4" />
-                        <PopoutTile name="col5" />
+                        <PopoutTile name="tl-br"/>
+                        <PopoutTile name="col1"/>
+                        <PopoutTile name="col2"/>
+                        <PopoutTile name="col3"/>
+                        <PopoutTile name="col4"/>
+                        <PopoutTile name="col5"/>
                     </tr>
 
                     <tr>
-                        <PopoutTile name="row1" />
+                        <PopoutTile name="row1"/>
                         {[0, 1, 2, 3, 4].map(createBingoTile)}
                     </tr>
                     <tr>
-                        <PopoutTile name="row2" />
+                        <PopoutTile name="row2"/>
                         {[5, 6, 7, 8, 9].map(createBingoTile)}
                     </tr>
                     <tr>
-                        <PopoutTile name="row3" />
+                        <PopoutTile name="row3"/>
                         {[10, 11, 12, 13, 14].map(createBingoTile)}
                     </tr>
                     <tr>
-                        <PopoutTile name="row4" />
+                        <PopoutTile name="row4"/>
                         {[15, 16, 17, 18, 19].map(createBingoTile)}
                     </tr>
                     <tr>
-                        <PopoutTile name="row5" />
+                        <PopoutTile name="row5"/>
                         {[20, 21, 22, 23, 24].map(createBingoTile)}
                     </tr>
                     <tr>
-                        <PopoutTile name="bl-tr" />
+                        <PopoutTile name="bl-tr"/>
                     </tr>
                 </table>
             </div>

@@ -8,9 +8,9 @@ interface BingoTileProps {
     onClick: () => void
 }
 
-function BingoTile(props:BingoTileProps) {
+function BingoTile(props: BingoTileProps) {
 
-    let classes = props.rows;
+    const classes = props.rows;
 
     if (props.color === "green") {
         classes.push("greensquare")
@@ -26,7 +26,7 @@ function BingoTile(props:BingoTileProps) {
     const className = classes.join(" ")
 
     return (
-        <td className = {className} onClick={props.onClick}>
+        <td className={className} onClick={props.onClick}>
             {props.goal}
         </td>
     )
