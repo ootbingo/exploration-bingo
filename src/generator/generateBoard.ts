@@ -1,17 +1,17 @@
+import {bingoListsByVersion, BingoVersion} from "./bingoVersions";
 import ootBingoGenerator from "./generator";
-import {bingoListsByVersion, BingoVersion} from "./bingo-versions";
 
 interface Goal {
     name: string,
 }
 
-export function generateBoard(seed: number, version: BingoVersion): string[] {
+export function generateBoard(mode: 'blackout' | 'shortBlackout', seed: number, version: BingoVersion): string[] {
     const bingoFunc = ootBingoGenerator;
     const bingoList = bingoListsByVersion[version];
 
     const bingoOpts = {
         seed: seed.toString(),
-        mode: "blackout",
+        mode: mode,
         lang: "name",
     };
 

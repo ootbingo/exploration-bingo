@@ -24,6 +24,7 @@ var ROWS_PER_INDEX = invertObject(INDICES_PER_ROW); var BingoGenerator = functio
     if (!options) { options = {}; }
     this.language = options.lang || 'name'; this.mode = options.mode || 'normal'; this.seed = options.seed || Math.ceil(999999 * Math.random()).toString(); if (bingoList.info && bingoList.info.combined === 'true') {
         if (bingoList[this.mode]) { bingoList = bingoList[this.mode]; }
+        else if (this.mode === 'shortBlackout' && bingoList["short"]) { bingoList = bingoList["short"]; }
         else if (bingoList["normal"]) { bingoList = bingoList["normal"]; }
         else { console.log("bingoList doesn't contain a valid sub goal list for mode: \"" + this.mode + "\""); }
     }
@@ -35,7 +36,8 @@ var ROWS_PER_INDEX = invertObject(INDICES_PER_ROW); var BingoGenerator = functio
         else { return 0; }
     }); this.goalsByName = {}; for (var i = 0; i < this.goalsList.length; i++) { var goal = this.goalsList[i]; this.goalsByName[goal.name] = goal; }
     this.profile = NORMAL_PROFILE; if (this.mode === 'short') { this.profile = SHORT_PROFILE; }
-    else if (this.mode === 'blackout') { this.profile = BLACKOUT_PROFILE; }
+    else if (this.mode === 'blackout' ) { this.profile = BLACKOUT_PROFILE; }
+    else if (this.mode === 'shortBlackout') { this.profile = SHORTBLACKOUT_PROFILE; }
     this.baselineTime = options.baselineTime || this.profile.baselineTime; this.timePerDifficulty = options.timePerDifficulty || this.profile.timePerDifficulty; this.minimumSynergy = options.minimumSynergy || this.profile.defaultMinimumSynergy; this.maximumSynergy = options.maximumSynergy || this.profile.defaultMaximumSynergy; this.maximumIndividualSynergy = options.maximumIndividualSynergy || this.profile.defaultMaximumIndividualSynergy; this.maximumSpill = options.maximumSpill || this.profile.defaultMaximumSpill; this.initialOffset = options.initialOffset || this.profile.defaultInitialOffset; this.maximumOffset = options.maximumOffset || this.profile.defaultMaximumOffset; Math.seedrandom(this.seed);
 }; BingoGenerator.prototype.makeCard = function () {
     this.bingoBoard = this.generateMagicSquare(); var populationOrder = this.generatePopulationOrder(); for (var i = 1; i <= 25; i++) {
@@ -51,7 +53,7 @@ BingoGenerator.prototype.chooseGoalForPosition = function (position) {
     var desiredDifficulty = this.bingoBoard[position].difficulty; var desiredTime = desiredDifficulty * this.timePerDifficulty; for (var offset = this.initialOffset; offset <= this.maximumOffset; offset++) {
         var minTime = desiredTime - offset; var maxTime = desiredTime + offset; var goalsAtTime = this.getGoalsInTimeRange(minTime, maxTime); goalsAtTime = weightedShuffle(goalsAtTime); for (var j = 0; j < goalsAtTime.length; j++) {
             var goal = goalsAtTime[j]; if (this.hasGoalOnBoard(goal)) { continue; }
-            if (this.mode === 'blackout') { if (this.hasConflictsOnBoard(goal)) { continue; } }
+            if (this.mode === 'blackout' || this.mode === 'shortBlackout') { if (this.hasConflictsOnBoard(goal)) { continue; } }
             var synergies = this.checkLine(position, goal); if (this.maximumSynergy >= synergies.maxSynergy && synergies.minSynergy >= this.minimumSynergy) { return { goal: goal, synergy: synergies.maxSynergy }; }
         }
     }

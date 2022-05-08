@@ -1,5 +1,5 @@
 import React from "react"
-import {BingoVersion} from "../generator/bingo-versions";
+import {BingoVersion} from "../generator/bingoVersions";
 
 interface BingoInfoProps {
     seed: number;
