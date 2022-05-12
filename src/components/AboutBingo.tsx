@@ -28,13 +28,13 @@ function AboutBingo() {
                 <p>You start with two goals. Completing a goal reveals the adjacent goals (north, west, south,
                     east).</p>
                 <p>Do not click a goal before completing it!</p>
-                <p>To win, complete an x amount of goals determined beforehand (for example 15 goals).</p>
+                <p>To win, complete an <em>x</em> amount of goals determined beforehand (e.g. 15 goals).</p>
                 <h2>General Bingo rules</h2>
                 <ul>
                     <li>
                         Banned Tricks for Bingo: "Using Deku Stick as Adult", "Get Item Manipulation (GIM)",
                         "Using Bombchus Out of Bounds", "Obtaining the Eyeball Frog without presenting the
-                        Prescription",
+                        Prescription", "Jumpslash Quick Putaway",
                         "Stale Reference Manipulation (SRM)", and all forms of Arbitrary Code Execution.
                     </li>
                     <li>
@@ -72,7 +72,8 @@ function AboutBingo() {
                     GENERATOR: Originally written and designed by Narcissa. Improved by Giuocob. v9 redesign by Saltor.
                     Frequency Balancing by prettybigjoe. <br/>
                     GOAL LIST: Original goal list by Narcissa. v9.3 data collection and coordination by Gombill.
-                    Goal timing and data collection by Exodus, Tob3000, Runnerguy2489, Tasselhoff, Juwk, and others in
+                    Goal timing and data collection by Exodus, tob3000, Runnerguy2489, Tasselhoff, juwk, shaggy, and
+                    others in
                     the community.
                 </p>
             </div>
