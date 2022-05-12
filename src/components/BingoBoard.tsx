@@ -102,6 +102,7 @@ class BingoBoard extends React.Component<BoardProps, BoardState> {
 
         const createBingoTile = (i: number) => {
             return <BingoTile
+                key={i}
                 rows={this.calculateRows(i)}
                 color={this.calculateColor(i)}
                 goal={this.props.goals[i]}
@@ -112,6 +113,7 @@ class BingoBoard extends React.Component<BoardProps, BoardState> {
         return (
             <div id="results">
                 <table id="bingo">
+                    <tbody>
                     <tr>
                         <PopoutTile name="tl-br"/>
                         <PopoutTile name="col1"/>
@@ -144,6 +146,7 @@ class BingoBoard extends React.Component<BoardProps, BoardState> {
                     <tr>
                         <PopoutTile name="bl-tr"/>
                     </tr>
+                    </tbody>
                 </table>
             </div>
         )
