@@ -74,7 +74,7 @@ header {
 }
 
 footer {
-    background: url("./img/texture_bar_footer2.jpg") top center;
+    background: url("assets/texture_bar_footer2.jpg") top center;
     border-top: 1px #424242 dotted;
     box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
     color: #808080;
@@ -171,8 +171,6 @@ nav ul li {
 
 nav ul li a {
     background-color: #424242;
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png");
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png"), linear-gradient(to bottom, #424242, #303030);
     border-width: 1px 0px 1px 1px;
     border-style: solid;
     border-color: #4c4c4c #000000 #000000 #474747;
@@ -192,7 +190,6 @@ nav ul li a {
 
 nav ul li a:hover {
     background-color: #3c70df;
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png"), linear-gradient(to bottom, #3c70df, #235cd4);
     border-width: 1px 0px 1px 1px;
     border-style: solid;
     border-color: #4e7de2 #102a63 #102a63 #4576e0;
@@ -201,7 +198,6 @@ nav ul li a:hover {
 
 nav ul li a:active {
     background-color: #1448b3;
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png"), linear-gradient(to bottom, #1448b3, #103b93);
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.6);
     border-width: 1px 0px 1px 1px;
     border-style: solid;
@@ -312,8 +308,6 @@ td {
 
 th {
     background-color: #c01614;
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png");
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png"), linear-gradient(to bottom, #c01614, #a01211);
     color: #f7e279;
     text-shadow: 1px 1px 3px #111111;
     font-weight: 700;
@@ -400,8 +394,6 @@ th {
 
 .smallbuttonstyle {
     background-color: #424242;
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png");
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png"), linear-gradient(to bottom, #424242, #303030);
     border-width: 1px 0px 1px 1px;
     border-style: solid;
     border-color: #4c4c4c #000000 #000000 #474747;
@@ -419,7 +411,6 @@ th {
 
 .smallbuttonstyle:hover {
     background-color: #3c70df;
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png"), linear-gradient(to bottom, #3c70df, #235cd4);
     border-width: 1px 0px 1px 1px;
     border-style: solid;
     border-color: #4e7de2 #102a63 #102a63 #4576e0;
@@ -428,7 +419,6 @@ th {
 
 .smallbuttonstyle:active {
     background-color: #1448b3;
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png"), linear-gradient(to bottom, #1448b3, #103b93);
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.6);
     border-width: 1px 0px 1px 1px;
     border-style: solid;
@@ -438,8 +428,6 @@ th {
 
 .smallbutton {
     background-color: #424242;
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png");
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png"), linear-gradient(to bottom, #424242, #303030);
     border-width: 1px 0px 1px 1px;
     border-style: solid;
     border-color: #4c4c4c #000000 #000000 #474747;
@@ -462,7 +450,6 @@ th {
 
 .smallbutton:hover {
     background-color: #3c70df;
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png"), linear-gradient(to bottom, #3c70df, #235cd4);
     border-width: 1px 0px 1px 1px;
     border-style: solid;
     border-color: #4e7de2 #102a63 #102a63 #4576e0;
@@ -471,7 +458,6 @@ th {
 
 .smallbutton:active {
     background-color: #1448b3;
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png"), linear-gradient(to bottom, #1448b3, #103b93);
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.6);
     border-width: 1px 0px 1px 1px;
     border-style: solid;
@@ -506,8 +492,6 @@ th {
 
 #bingoPage .newcard {
     background-color: #424242;
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png");
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png"), linear-gradient(to bottom, #424242, #303030);
     border-width: 1px 0px 1px 1px;
     border-style: solid;
     border-color: #4c4c4c #000000 #000000 #474747;
@@ -528,7 +512,6 @@ th {
 
 #bingoPage .newcard:hover {
     background-color: #3c70df;
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png"), linear-gradient(to bottom, #3c70df, #235cd4);
     border-width: 1px 0px 1px 1px;
     border-style: solid;
     border-color: #4e7de2 #102a63 #102a63 #4576e0;
@@ -537,7 +520,6 @@ th {
 
 #bingoPage .newcard:active {
     background-color: #1448b3;
-    background-image: url("//c15111086.r86.cf2.rackcdn.com/grunge_button.png"), linear-gradient(to bottom, #1448b3, #103b93);
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.6);
     border-width: 1px 0px 1px 1px;
     border-style: solid;
