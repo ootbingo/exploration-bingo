@@ -1,16 +1,11 @@
-import React from "react"
+import React from "react";
 
 interface PopoutProps {
-    name: string
+  name: string;
 }
 
 function PopoutTitle(props: PopoutProps) {
-
-    return (
-        <td className="popout">
-            {props.name}
-        </td>
-    )
+  return <td className="popout">{props.name}</td>;
 }
 
-export default PopoutTitle
+export default PopoutTitle;
