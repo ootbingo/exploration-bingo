@@ -10,7 +10,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const urlSeed = urlParams.get("seed");
 const seed = parseInt(urlSeed || "") || Math.floor(Math.random() * 999999);
 
-const urlVersion = urlParams.get("version");
+const urlVersion = urlParams.get("version") ?? "";
 const version = isBingoVersion(urlVersion) ? urlVersion : latestBingoVersion;
 
 const urlMode = urlParams.get("mode");

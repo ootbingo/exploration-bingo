@@ -1,7 +1,7 @@
 import React from "react";
 import { isBingoVersion, latestBingoVersion } from "oot-bingo-lists";
 
-const urlVersion = new URLSearchParams(window.location.search).get("version");
+const urlVersion = new URLSearchParams(window.location.search).get("version") ?? "";
 const version = isBingoVersion(urlVersion) ? urlVersion : latestBingoVersion;
 
 function AboutBingo() {
@@ -12,10 +12,10 @@ function AboutBingo() {
       <div style={{ clear: "both" }}>
         <div style={{ marginTop: "16px" }}>
           <a className="newcard" href={`?version=${version}&mode=blackout`}>
-            Blackout Card
+            Blackout
           </a>
           <a className="newcard" href={`?version=${version}&mode=short-blackout`}>
-            Short Blackout Card
+            Short Blackout
           </a>
         </div>
         <div style={{ clear: "both" }} />
