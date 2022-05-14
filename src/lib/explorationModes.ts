@@ -24,3 +24,12 @@ export function toUrlExplorationMode(str: string | null): UrlExplorationMode {
       return "blackout";
   }
 }
+
+export function displayExplorationMode(mode: ExplorationMode): string {
+  switch (mode) {
+    case "blackout":
+      return "Blackout";
+    case "shortBlackout":
+      return "Short Blackout";
+  }
+}
