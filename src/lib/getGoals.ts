@@ -11,6 +11,6 @@ export function getGoals(
     return [];
   }
 
-  const card = generateBoard(bingoList as any, mode, seed);
+  const card = generateBoard(bingoList, mode, seed);
   return card.goals.map((goal) => goal.name);
 }

@@ -1,12 +1,12 @@
-import React from "react"
-import BingoTile from "./BingoTile"
-import PopoutTile from "./PopoutTile"
+import React from "react";
+import BingoTile from "./BingoTile";
+import PopoutTile from "./PopoutTile";
 
 interface BoardProps {
-    goals: string[],
-    seed: number,
-    onGreen: () => void,
-    onRed: () => void
+  goals: string[];
+  seed: number;
+  onGreen: () => void;
+  onRed: () => void;
 }
 
 interface BoardState {
@@ -36,7 +36,7 @@ class BingoBoard extends React.Component<BoardProps, BoardState> {
     incrementCounter(i: number) {
         const newCounters = this.state.counters
         newCounters[i] = newCounters[i] + 1
-        this.setState({counters: newCounters})
+        this.setState({ counters: newCounters })
     }
 
     calculateRows(i: number) {
@@ -73,8 +73,8 @@ class BingoBoard extends React.Component<BoardProps, BoardState> {
         }
 
         return !this.getAdjacentTiles(i)
-            .map(tile => this.state.counters[tile])
-            .some(counter => counter > 0)
+          .map(tile => this.state.counters[tile])
+          .some(counter => counter > 0)
     }
 
     getStartTiles() {
@@ -102,53 +102,55 @@ class BingoBoard extends React.Component<BoardProps, BoardState> {
 
         const createBingoTile = (i: number) => {
             return <BingoTile
-                key={i}
-                rows={this.calculateRows(i)}
-                color={this.calculateColor(i)}
-                goal={this.props.goals[i]}
-                hidden={this.isHidden(i)}
-                onClick={() => this.onTileClick(i)}
+              key={i}
+              rows={this.calculateRows(i)}
+              color={this.calculateColor(i)}
+              goal={this.props.goals[i]}
+              hidden={this.isHidden(i)}
+              onClick={() => this.onTileClick(i)}
             />
         }
         return (
-            <div id="results">
-                <table id="bingo">
-                    <tbody>
-                    <tr>
-                        <PopoutTile name="tl-br"/>
-                        <PopoutTile name="col1"/>
-                        <PopoutTile name="col2"/>
-                        <PopoutTile name="col3"/>
-                        <PopoutTile name="col4"/>
-                        <PopoutTile name="col5"/>
-                    </tr>
+          <div id="results">
+              <table id="bingo">
+                  <tbody>
+                  <tr>
+                      <PopoutTile name="tl-br" />
+                      <PopoutTile name="col1" />
+                      <PopoutTile name="col2" />
+                      <PopoutTile name="col3" />
+                      <PopoutTile name="col4" />
+                      <PopoutTile name="col5" />
+                  </tr>
 
-                    <tr>
-                        <PopoutTile name="row1"/>
-                        {[0, 1, 2, 3, 4].map(createBingoTile)}
-                    </tr>
-                    <tr>
-                        <PopoutTile name="row2"/>
-                        {[5, 6, 7, 8, 9].map(createBingoTile)}
-                    </tr>
-                    <tr>
-                        <PopoutTile name="row3"/>
-                        {[10, 11, 12, 13, 14].map(createBingoTile)}
-                    </tr>
-                    <tr>
-                        <PopoutTile name="row4"/>
-                        {[15, 16, 17, 18, 19].map(createBingoTile)}
-                    </tr>
-                    <tr>
-                        <PopoutTile name="row5"/>
-                        {[20, 21, 22, 23, 24].map(createBingoTile)}
-                    </tr>
-                    <tr>
-                        <PopoutTile name="bl-tr"/>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
+                  <tr>
+                      <PopoutTile name="row1" />
+                      {[0, 1, 2, 3, 4].map(createBingoTile)}
+                  </tr>
+                  <tr>
+                      <PopoutTile name="row2" />
+                      {[5, 6, 7, 8, 9].map(createBingoTile)}
+                  </tr>
+                  <tr>
+                      <PopoutTile name="row3" />
+                      {[10, 11, 12, 13, 14].map(createBingoTile)}
+                  </tr>
+                  <tr>
+                      <PopoutTile name="row4" />
+                      {[15, 16, 17, 18, 19].map(createBingoTile)}
+                  </tr>
+                  <tr>
+                      <PopoutTile name="row5" />
+                      {[20, 21, 22, 23, 24].map(createBingoTile)}
+                  </tr>
+
+
+                  <tr>
+                      <PopoutTile name="bl-tr" />
+                  </tr>
+                  </tbody>
+              </table>
+          </div>
         )
     };
 }

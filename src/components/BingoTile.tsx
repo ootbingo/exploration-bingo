@@ -1,35 +1,34 @@
-import React from "react"
+import React from "react";
 
 interface BingoTileProps {
-    rows: string[],
-    color: string,
-    goal: string,
-    hidden: boolean,
-    onClick: () => void
+  rows: string[];
+  color: string;
+  goal: string;
+  hidden: boolean;
+  onClick: () => void;
 }
 
 function BingoTile(props: BingoTileProps) {
+  const classes = props.rows;
 
-    const classes = props.rows;
+  if (props.color === "green") {
+    classes.push("greensquare");
+  }
+  if (props.color === "red") {
+    classes.push("redsquare");
+  }
 
-    if (props.color === "green") {
-        classes.push("greensquare")
-    }
-    if (props.color === "red") {
-        classes.push("redsquare")
-    }
+  if (props.hidden) {
+    classes.push("hidden");
+  }
 
-    if (props.hidden) {
-        classes.push("hidden")
-    }
+  const className = classes.join(" ");
 
-    const className = classes.join(" ")
-
-    return (
-        <td className={className} onClick={props.onClick}>
-            {props.goal}
-        </td>
-    )
+  return (
+    <td className={className} onClick={props.onClick}>
+      {props.goal}
+    </td>
+  );
 }
 
-export default BingoTile
+export default BingoTile;
