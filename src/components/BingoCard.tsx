@@ -42,7 +42,7 @@ function BingoCard() {
   return (
     <>
       <BingoBoard goals={goals} seed={seed} onGreen={onGreen} onRed={onRed} />
-      <BingoInfo seed={seed} version={version} goalsCompleted={goalsCompleted} />
+      <BingoInfo seed={seed} version={version} mode={mode} goalsCompleted={goalsCompleted} />
     </>
   );
 }
