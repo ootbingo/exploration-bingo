@@ -78,6 +78,9 @@ class BingoBoard extends React.Component<BoardProps, BoardState> {
     }
 
     getStartTiles() {
+        if (this.props.seed % 10000 === 4444) {
+          return [6, 8, 16, 18]
+        }
         return this.props.seed % 2 === 0 ? [6, 18] : [8, 16]
     }
 
