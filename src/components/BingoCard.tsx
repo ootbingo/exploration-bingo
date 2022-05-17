@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import BingoBoard from "./BingoBoard";
-import { getGoals } from "../lib/getGoals";
 import BingoInfo from "./BingoInfo";
-import { isBingoVersion, latestBingoVersion } from "oot-bingo-lists";
+import { getBingoList, isBingoVersion, latestBingoVersion } from "oot-bingo-lists";
 import { toExplorationMode, toUrlExplorationMode } from "../lib/explorationModes";
+import { generateBingoBoard } from "oot-bingo-generator";
 
 const urlParams = new URLSearchParams(window.location.search);
 
@@ -28,7 +28,10 @@ if (
 }
 
 const explorationSeed = seed + 1765913;
-const goals = getGoals(mode, explorationSeed, version);
+
+const bingoList = getBingoList(version);
+const board = generateBingoBoard(bingoList, mode, explorationSeed);
+const goals = board?.goalNames || [];
 
 function BingoCard() {
   const [goalsCompleted, setGoalsCompleted] = useState(0);
