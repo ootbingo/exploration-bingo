@@ -503,9 +503,9 @@ th {
 #bingoPage .newcard {
     background-color: #424242;
     background-image: linear-gradient(to bottom, #424242, #303030);
-    border-width: 1px 0 1px 1px;
+    border-width: 2px;
     border-style: solid;
-    border-color: #4c4c4c #000000 #000000 #474747;
+    border-color: #4c4c4c #262626 #262626 #474747;
     text-align: center;
     display: block;
     font-weight: 700;
@@ -516,15 +516,15 @@ th {
     border-radius: 5px;
     user-select: none;
     cursor: pointer;
-    width: 105px;
-    margin-right: 16px;
+    width: 110px;
+    margin-right: 10px;
     padding: 4px 0;
 }
 
 #bingoPage .newcard:hover {
     background-color: #3c70df;
     background-image: linear-gradient(to bottom, #3c70df, #235cd4);
-    border-width: 1px 0 1px 1px;
+    border-width: 2px;
     border-style: solid;
     border-color: #4e7de2 #102a63 #102a63 #4576e0;
     color: #ffffff;
@@ -534,7 +534,7 @@ th {
     background-color: #1448b3;
     background-image: linear-gradient(to bottom, #1448b3, #103b93);
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.6);
-    border-width: 1px 0 1px 1px;
+    border-width: 2px;
     border-style: solid;
     border-color: #164fc5 #071a40 #071a40 #154cbc;
     color: #ffffff;
@@ -542,6 +542,56 @@ th {
 
 #bingoPage .newcard:last-child {
     margin-right: 0;
+}
+
+#bingoPage .smallerButton {
+    background-color: #424242;
+    background-image: linear-gradient(to bottom, #424242, #303030);
+    border-width: 2px;
+    border-style: solid;
+    border-color: #4c4c4c #262626 #262626 #474747;
+    text-align: center;
+    display: block;
+    font-weight: 700;
+    color: #bec7d2;
+    margin: 1px;
+    float: left;
+    box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+    border-radius: 5px;
+    user-select: none;
+    cursor: pointer;
+    width: 40px;
+    margin-right: 10px;
+    padding: 4px 0;
+}
+
+#bingoPage .smallerButton:hover {
+    background-color: #3c70df;
+    background-image: linear-gradient(to bottom, #3c70df, #235cd4);
+    border-width: 2px;
+    border-style: solid;
+    border-color: #4e7de2 #102a63 #102a63 #4576e0;
+    color: #ffffff;
+}
+
+#bingoPage .smallerButton:active {
+    background-color: #1448b3;
+    background-image: linear-gradient(to bottom, #1448b3, #103b93);
+    box-shadow: 0 0 0 rgba(0, 0, 0, 0.6);
+    border-width: 2px;
+    border-style: solid;
+    border-color: #164fc5 #071a40 #071a40 #154cbc;
+    color: #ffffff;
+}
+
+
+#bingoPage .smallerButton:last-child {
+    margin-right: 0;
+}
+
+#bingoPage .buttonSelected {
+    border-color: #3c6fde !important;
+    border-width: 2px !important;
 }
 
 #bingoPage #bingo {

@@ -1,31 +1,13 @@
 import React, { useState } from "react";
 import BingoBoard from "./BingoBoard";
 import BingoInfo from "./BingoInfo";
-import { getBingoList, isBingoVersion, latestBingoVersion } from "oot-bingo-lists";
-import { toExplorationMode, toUrlExplorationMode } from "../lib/explorationModes";
+import { getBingoList } from "oot-bingo-lists";
 import { generateBingoBoard } from "oot-bingo-generator";
+import { parseUrlParams } from "../lib/parseUrlParams";
 
 const urlParams = new URLSearchParams(window.location.search);
 
-const urlSeed = urlParams.get("seed");
-const seed = parseInt(urlSeed || "") || Math.floor(Math.random() * 999999);
-
-const urlVersion = urlParams.get("version") ?? "";
-const version = isBingoVersion(urlVersion) ? urlVersion : latestBingoVersion;
-
-const urlMode = urlParams.get("mode");
-const mode = toExplorationMode(urlMode);
-
-if (
-  seed.toString() !== urlSeed ||
-  version !== urlVersion ||
-  toUrlExplorationMode(mode) !== urlMode
-) {
-  urlParams.set("version", version);
-  urlParams.set("mode", toUrlExplorationMode(mode));
-  urlParams.set("seed", seed.toString());
-  window.location.search = urlParams.toString();
-}
+const { seed, version, mode, tiles } = parseUrlParams(urlParams, true);
 
 const explorationSeed = seed + 1765913;
 
@@ -44,8 +26,20 @@ function BingoCard() {
 
   return (
     <>
-      <BingoBoard goals={goals} seed={seed} onGreen={onGreen} onRed={onRed} />
-      <BingoInfo seed={seed} version={version} mode={mode} goalsCompleted={goalsCompleted} />
+      <BingoBoard
+        goals={goals}
+        startTilesMode={tiles}
+        seed={seed}
+        onGreen={onGreen}
+        onRed={onRed}
+      />
+      <BingoInfo
+        seed={seed}
+        version={version}
+        mode={mode}
+        startTilesMode={tiles}
+        goalsCompleted={goalsCompleted}
+      />
     </>
   );
 }

@@ -1,11 +1,13 @@
 import React from "react";
 import { BingoVersion } from "oot-bingo-lists";
 import { displayExplorationMode, ExplorationMode } from "../lib/explorationModes";
+import { StartTilesMode } from "../lib/startingTileModes";
 
 interface BingoInfoProps {
   seed: number;
   version: BingoVersion;
   mode: ExplorationMode;
+  startTilesMode: StartTilesMode;
   goalsCompleted: number;
 }
 
@@ -21,6 +23,9 @@ function BingoInfo(props: BingoInfoProps) {
         </p>
         <p className="infoBlock">
           Mode: <strong>{displayExplorationMode(props.mode)}</strong>
+        </p>
+        <p className="infoBlock">
+          Start tiles: <strong>{props.startTilesMode}</strong>
         </p>
       </div>
       <p>
