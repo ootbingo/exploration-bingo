@@ -1,23 +1,50 @@
 import React from "react";
-import { isBingoVersion, latestBingoVersion } from "oot-bingo-lists";
+import { parseUrlParams } from "../lib/parseUrlParams";
+import { toUrlExplorationMode } from "../lib/explorationModes";
 
-const urlVersion = new URLSearchParams(window.location.search).get("version") ?? "";
-const version = isBingoVersion(urlVersion) ? urlVersion : latestBingoVersion;
+const { version, mode, tiles } = parseUrlParams(new URLSearchParams(window.location.search));
 
 function AboutBingo() {
   return (
     <div id="about_bingo">
       <h1>Ocarina of Time Bingo</h1>
       <div id="newcards" />
+
+      <h2>Card</h2>
+
       <div style={{ clear: "both" }}>
-        <div style={{ marginTop: "16px" }}>
-          <a className="newcard" href={`?version=${version}&mode=blackout`}>
+        <div style={{ display: "inline-flex", flexDirection: "row", alignItems: "center" }}>
+          <a
+            className={"newcard" + (mode === "blackout" ? " buttonSelected" : "")}
+            href={`?version=${version}&mode=blackout&start-tiles=${tiles}`}
+          >
             Blackout
           </a>
-          <a className="newcard" href={`?version=${version}&mode=short-blackout`}>
+          <a
+            className={"newcard" + (mode === "shortBlackout" ? " buttonSelected" : "")}
+            href={`?version=${version}&mode=short-blackout&start-tiles=${tiles}`}
+          >
             Short Blackout
           </a>
         </div>
+
+        <h2>Start tiles</h2>
+
+        <div style={{ display: "inline-flex", flexDirection: "row", alignItems: "center" }}>
+          <a
+            className={"smallerButton" + (tiles === "2" ? " buttonSelected" : "")}
+            href={`?version=${version}&mode=${toUrlExplorationMode(mode)}&start-tiles=2`}
+          >
+            2
+          </a>
+          <a
+            className={"smallerButton" + (tiles === "4" ? " buttonSelected" : "")}
+            href={`?version=${version}&mode=${toUrlExplorationMode(mode)}&start-tiles=4`}
+          >
+            4
+          </a>
+        </div>
+
         <div style={{ clear: "both" }} />
 
         <h2>About</h2>

@@ -1,10 +1,12 @@
 import React from "react";
 import BingoTile from "./BingoTile";
 import PopoutTile from "./PopoutTile";
+import { getStartTiles, StartTilesMode } from "../lib/startingTileModes";
 
 interface BoardProps {
   goals: string[];
   seed: number;
+  startTilesMode: StartTilesMode;
   onGreen: () => void;
   onRed: () => void;
 }
@@ -60,22 +62,15 @@ class BingoBoard extends React.Component<BoardProps, BoardState> {
     return "";
   }
 
-  boardIsHidden() {
-    return this.state.counters.every((i) => i === 0);
-  }
-
   isHidden(i: number) {
-    if (this.getStartTiles().includes(i)) {
+    const startTiles = getStartTiles(this.props.startTilesMode, this.props.seed);
+    if (startTiles.includes(i)) {
       return false;
     }
 
     return !this.getAdjacentTiles(i)
       .map((tile) => this.state.counters[tile])
       .some((counter) => counter > 0);
-  }
-
-  getStartTiles() {
-    return this.props.seed % 2 === 0 ? [6, 18] : [8, 16];
   }
 
   getAdjacentTiles(i: number): number[] {
