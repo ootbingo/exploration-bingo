@@ -1,22 +1,13 @@
 {
   "files": {
-    "main.css": "/exploration-bingo/static/css/main.62e1ec75.chunk.css",
-    "main.js": "/exploration-bingo/static/js/main.ddebbabe.chunk.js",
-    "main.js.map": "/exploration-bingo/static/js/main.ddebbabe.chunk.js.map",
-    "runtime-main.js": "/exploration-bingo/static/js/runtime-main.e89b8243.js",
-    "runtime-main.js.map": "/exploration-bingo/static/js/runtime-main.e89b8243.js.map",
-    "static/js/2.19bfc22b.chunk.js": "/exploration-bingo/static/js/2.19bfc22b.chunk.js",
-    "static/js/2.19bfc22b.chunk.js.map": "/exploration-bingo/static/js/2.19bfc22b.chunk.js.map",
+    "main.css": "/exploration-bingo/static/css/main.7899d884.css",
+    "main.js": "/exploration-bingo/static/js/main.dc677d73.js",
     "index.html": "/exploration-bingo/index.html",
-    "precache-manifest.7bd16934de1a406ff610214324ba1c75.js": "/exploration-bingo/precache-manifest.7bd16934de1a406ff610214324ba1c75.js",
-    "service-worker.js": "/exploration-bingo/service-worker.js",
-    "static/css/main.62e1ec75.chunk.css.map": "/exploration-bingo/static/css/main.62e1ec75.chunk.css.map",
-    "static/js/2.19bfc22b.chunk.js.LICENSE.txt": "/exploration-bingo/static/js/2.19bfc22b.chunk.js.LICENSE.txt"
+    "main.7899d884.css.map": "/exploration-bingo/static/css/main.7899d884.css.map",
+    "main.dc677d73.js.map": "/exploration-bingo/static/js/main.dc677d73.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.e89b8243.js",
-    "static/js/2.19bfc22b.chunk.js",
-    "static/css/main.62e1ec75.chunk.css",
-    "static/js/main.ddebbabe.chunk.js"
+    "static/css/main.7899d884.css",
+    "static/js/main.dc677d73.js"
   ]
 }
