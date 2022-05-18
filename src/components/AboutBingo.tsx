@@ -51,8 +51,8 @@ function AboutBingo() {
 
         <p>This is exploration bingo.</p>
         <p>
-          You start with two goals. Completing a goal reveals the adjacent goals (north, west,
-          south, east).
+          You start with two or four visible goals. Completing a goal reveals the adjacent goals
+          (north, west, south, east).
         </p>
         <p>Do not click a goal before completing it!</p>
         <p>
