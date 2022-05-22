@@ -3,26 +3,26 @@ import BingoBoard from "./BingoBoard";
 import BingoInfo from "./BingoInfo";
 import { getBingoList } from "oot-bingo-lists";
 import { generateBingoBoard } from "oot-bingo-generator";
-import { parseUrlParams } from "../lib/parseUrlParams";
+import { Options } from "../lib/parseUrlParams";
 
-const urlParams = new URLSearchParams(window.location.search);
+interface Props {
+  options: Options;
+}
 
-const { seed, version, mode, tiles } = parseUrlParams(urlParams, true);
+function BingoCard(props: Props) {
+  const [goalsCompleted, setGoalsCompleted] = useState<number>(0);
 
-const explorationSeed = seed + 1765913;
-
-const bingoList = getBingoList(version);
-const board = generateBingoBoard(bingoList, mode, explorationSeed);
-const goals = board?.goalNames || [];
-
-function BingoCard() {
-  const [goalsCompleted, setGoalsCompleted] = useState(0);
-  const onGreen = () => setGoalsCompleted(goalsCompleted + 1);
-  const onRed = () => setGoalsCompleted(goalsCompleted - 1);
-
-  if (seed === -1) {
+  if (!props.options || props.options.seed === -1) {
     return <></>;
   }
+
+  const { seed, version, mode, tiles } = props.options;
+
+  const explorationSeed = seed + 1765913;
+
+  const bingoList = getBingoList(version);
+  const board = generateBingoBoard(bingoList, mode, explorationSeed);
+  const goals = board?.goalNames || [];
 
   return (
     <>
@@ -30,8 +30,8 @@ function BingoCard() {
         goals={goals}
         startTilesMode={tiles}
         seed={seed}
-        onGreen={onGreen}
-        onRed={onRed}
+        onGreen={() => setGoalsCompleted(goalsCompleted + 1)}
+        onRed={() => setGoalsCompleted(goalsCompleted - 1)}
       />
       <BingoInfo
         seed={seed}
