@@ -4,7 +4,7 @@ import { toUrlExplorationMode } from "../lib/explorationModes";
 
 const { version, mode, tiles } = parseUrlParams(new URLSearchParams(window.location.search));
 
-function AboutBingo() {
+export function AboutBingo() {
   return (
     <div id="about_bingo">
       <h1>Ocarina of Time Bingo</h1>
@@ -115,5 +115,3 @@ function AboutBingo() {
     </div>
   );
 }
-
-export default AboutBingo;

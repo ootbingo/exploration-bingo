@@ -1,15 +1,15 @@
 import React, { useState } from "react";
-import BingoBoard from "./BingoBoard";
 import BingoInfo from "./BingoInfo";
 import { getBingoList } from "oot-bingo-lists";
 import { generateBingoBoard } from "oot-bingo-generator";
 import { Options } from "../lib/parseUrlParams";
+import { BingoBoard } from "./BingoBoard";
 
 interface Props {
   options: Options;
 }
 
-function BingoCard(props: Props) {
+export function BingoCard(props: Props) {
   const [goalsCompleted, setGoalsCompleted] = useState<number>(0);
 
   if (!props.options || props.options.seed === -1) {
@@ -30,8 +30,7 @@ function BingoCard(props: Props) {
         goals={goals}
         startTilesMode={tiles}
         seed={seed}
-        onGreen={() => setGoalsCompleted(goalsCompleted + 1)}
-        onRed={() => setGoalsCompleted(goalsCompleted - 1)}
+        setGoalsCompleted={setGoalsCompleted}
       />
       <BingoInfo
         seed={seed}
@@ -43,5 +42,3 @@ function BingoCard(props: Props) {
     </>
   );
 }
-
-export default BingoCard;

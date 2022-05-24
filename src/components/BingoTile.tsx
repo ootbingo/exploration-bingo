@@ -1,6 +1,6 @@
 import React from "react";
 
-interface BingoTileProps {
+interface Props {
   rows: string[];
   color: string;
   goal: string;
@@ -8,7 +8,7 @@ interface BingoTileProps {
   onClick: () => void;
 }
 
-function BingoTile(props: BingoTileProps) {
+export function BingoTile(props: Props) {
   const classes = props.rows;
 
   if (props.color === "green") {
@@ -30,5 +30,3 @@ function BingoTile(props: BingoTileProps) {
     </td>
   );
 }
-
-export default BingoTile;

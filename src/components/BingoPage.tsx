@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import AboutBingo from "./AboutBingo";
-import ClickToReveal from "./ClickToReveal";
-import BingoCard from "./BingoCard";
 import { Options, parseUrlParams } from "../lib/parseUrlParams";
+import { BingoCard } from "./BingoCard";
+import { AboutBingo } from "./AboutBingo";
+import { ClickToReveal } from "./ClickToReveal";
 
 function BingoPage() {
   const [options, setOptions] = useState<Options | undefined>(undefined);
