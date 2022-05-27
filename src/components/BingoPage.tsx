@@ -4,9 +4,11 @@ import { BingoCard } from "./BingoCard";
 import { AboutBingo } from "./AboutBingo";
 import { ClickToReveal } from "./ClickToReveal";
 
-function BingoPage() {
+export const BingoPage: React.FC = () => {
   const [options, setOptions] = useState<Options | undefined>(undefined);
   const [boardRevealed, setBoardRevealed] = useState(false);
+
+  const showCard = boardRevealed && !!options;
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
@@ -16,14 +18,11 @@ function BingoPage() {
   return (
     <div id="bingoPage">
       <AboutBingo />
-      {options &&
-        (boardRevealed ? (
-          <BingoCard options={options} />
-        ) : (
-          <ClickToReveal onClick={() => setBoardRevealed(true)} />
-        ))}
+      {showCard ? (
+        <BingoCard options={options} />
+      ) : (
+        <ClickToReveal onClick={() => setBoardRevealed(true)} />
+      )}
     </div>
   );
-}
-
-export default BingoPage;
+};

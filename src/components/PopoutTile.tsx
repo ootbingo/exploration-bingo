@@ -1,11 +1,9 @@
 import React from "react";
 
-interface PopoutProps {
+interface Props {
   name: string;
 }
 
-function PopoutTitle(props: PopoutProps) {
-  return <td className="popout">{props.name}</td>;
-}
-
-export default PopoutTitle;
+export const PopoutTile: React.FC<Props> = ({ name }) => {
+  return <td className="popout">{name}</td>;
+};

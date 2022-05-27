@@ -4,7 +4,7 @@ import { toUrlExplorationMode } from "../lib/explorationModes";
 
 const { version, mode, tiles } = parseUrlParams(new URLSearchParams(window.location.search));
 
-export function AboutBingo() {
+export const AboutBingo: React.FC = () => {
   return (
     <div id="about_bingo">
       <h1>Ocarina of Time Bingo</h1>
@@ -114,4 +114,4 @@ export function AboutBingo() {
       </div>
     </div>
   );
-}
+};

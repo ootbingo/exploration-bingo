@@ -9,14 +9,14 @@ interface Props {
   options: Options;
 }
 
-export function BingoCard(props: Props) {
+export const BingoCard: React.FC<Props> = ({ options }) => {
   const [goalsCompleted, setGoalsCompleted] = useState<number>(0);
 
-  if (!props.options || props.options.seed === -1) {
+  if (options.seed === -1) {
     return <></>;
   }
 
-  const { seed, version, mode, tiles } = props.options;
+  const { seed, version, mode, tiles } = options;
 
   const explorationSeed = seed + 1765913;
 
@@ -41,4 +41,4 @@ export function BingoCard(props: Props) {
       />
     </>
   );
-}
+};

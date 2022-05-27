@@ -8,25 +8,25 @@ interface Props {
   onClick: () => void;
 }
 
-export function BingoTile(props: Props) {
-  const classes = props.rows;
+export const BingoTile: React.FC<Props> = ({ rows, color, goal, hidden, onClick }) => {
+  const classes = rows;
 
-  if (props.color === "green") {
+  if (color === "green") {
     classes.push("greensquare");
   }
-  if (props.color === "red") {
+  if (color === "red") {
     classes.push("redsquare");
   }
 
-  if (props.hidden) {
+  if (hidden) {
     classes.push("hidden");
   }
 
   const className = classes.join(" ");
 
   return (
-    <td className={className} onClick={props.onClick}>
-      {props.goal}
+    <td className={className} onClick={onClick}>
+      {goal}
     </td>
   );
-}
+};

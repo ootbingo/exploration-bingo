@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import PopoutTile from "./PopoutTile";
 import { getStartTiles, StartTilesMode } from "../lib/startingTileModes";
 import { BingoTile } from "./BingoTile";
+import { PopoutTile } from "./PopoutTile";
 
 interface Props {
   goals: string[];
@@ -10,13 +10,13 @@ interface Props {
   setGoalsCompleted: (numberOfGoals: number) => void;
 }
 
-export function BingoBoard(props: Props) {
+export const BingoBoard: React.FC<Props> = ({ goals, seed, startTilesMode, setGoalsCompleted }) => {
   const [clicks, setClicks] = useState<number[]>(Array(25).fill(0));
 
   useEffect(() => {
     const colorCount = clicks.filter((_, position) => calculateColor(position) !== "").length;
-    props.setGoalsCompleted(colorCount);
-  }, [clicks, calculateColor, props.setGoalsCompleted]);
+    setGoalsCompleted(colorCount);
+  }, [clicks, calculateColor, setGoalsCompleted]);
 
   function onTileClick(position: number) {
     incrementClicks(position);
@@ -39,7 +39,7 @@ export function BingoBoard(props: Props) {
   }
 
   function isHidden(position: number): boolean {
-    const startTiles = getStartTiles(props.startTilesMode, props.seed);
+    const startTiles = getStartTiles(startTilesMode, seed);
     if (startTiles.includes(position)) {
       return false;
     }
@@ -54,7 +54,7 @@ export function BingoBoard(props: Props) {
         key={position}
         rows={calculateRows(position)}
         color={calculateColor(position)}
-        goal={props.goals[position]}
+        goal={goals[position]}
         hidden={isHidden(position)}
         onClick={() => onTileClick(position)}
       />
@@ -102,7 +102,7 @@ export function BingoBoard(props: Props) {
       </table>
     </div>
   );
-}
+};
 
 function calculateRows(position: number) {
   const row = Math.floor(position / 5) + 1;
