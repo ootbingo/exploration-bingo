@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useCallback, useEffect, useState } from "react";
 import { getStartTiles, StartTilesMode } from "../lib/startingTileModes";
 import { BingoTile } from "./BingoTile";
 import { PopoutTile } from "./PopoutTile";
@@ -12,6 +12,17 @@ interface Props {
 
 export const BingoBoard: React.FC<Props> = ({ goals, seed, startTilesMode, setGoalsCompleted }) => {
   const [clicks, setClicks] = useState<number[]>(Array(25).fill(0));
+
+  const calculateColor = useCallback(
+    (position: number) => {
+      if (clicks[position] % 3 === 1) {
+        return "green";
+      }
+      if (clicks[position] % 3 === 2) return "red";
+      return "";
+    },
+    [clicks]
+  );
 
   useEffect(() => {
     const colorCount = clicks.filter((_, position) => calculateColor(position) !== "").length;
@@ -28,14 +39,6 @@ export const BingoBoard: React.FC<Props> = ({ goals, seed, startTilesMode, setGo
       newClicks[position] = newClicks[position] + 1;
       return newClicks;
     });
-  }
-
-  function calculateColor(position: number) {
-    if (clicks[position] % 3 === 1) {
-      return "green";
-    }
-    if (clicks[position] % 3 === 2) return "red";
-    return "";
   }
 
   function isHidden(position: number): boolean {
