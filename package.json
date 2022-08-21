@@ -3,12 +3,6 @@
   "version": "0.1.0",
   "private": true,
   "homepage": "https://ootbingo.github.io/exploration-bingo",
-  "dependencies": {
-    "oot-bingo-generator": "^1.0.3",
-    "oot-bingo-lists": "^1.0.4",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1"
-  },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
@@ -31,6 +25,12 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "dependencies": {
+    "oot-bingo-generator": "^1.0.4",
+    "oot-bingo-lists": "^1.2.0",
+    "react": "^16.13.1",
+    "react-dom": "^16.13.1"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^5.16.4",
