@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import BingoInfo from "./BingoInfo";
 import { getBingoList } from "oot-bingo-lists";
 import { generateBingoBoard } from "oot-bingo-generator";
 import { Options } from "../lib/parseUrlParams";
 import { BingoBoard } from "./BingoBoard";
+import { BingoInfo } from "./BingoInfo";
 
 interface Props {
   options: Options;

@@ -3,7 +3,7 @@ import { BingoVersion } from "oot-bingo-lists";
 import { displayExplorationMode, ExplorationMode } from "../lib/explorationModes";
 import { StartTilesMode } from "../lib/startingTileModes";
 
-interface BingoInfoProps {
+interface Props {
   seed: number;
   version: BingoVersion;
   mode: ExplorationMode;
@@ -11,28 +11,32 @@ interface BingoInfoProps {
   goalsCompleted: number;
 }
 
-function BingoInfo(props: BingoInfoProps) {
+export const BingoInfo: React.FC<Props> = ({
+  seed,
+  version,
+  mode,
+  startTilesMode,
+  goalsCompleted,
+}) => {
   return (
     <div id="results">
       <div id="cardInfo">
         <p className="infoBlock">
-          Version: <strong>{props.version}</strong>
+          Version: <strong>{version}</strong>
         </p>
         <p className="infoBlock">
-          Seed: <strong>{props.seed}</strong>
+          Seed: <strong>{seed}</strong>
         </p>
         <p className="infoBlock">
-          Mode: <strong>{displayExplorationMode(props.mode)}</strong>
+          Mode: <strong>{displayExplorationMode(mode)}</strong>
         </p>
         <p className="infoBlock">
-          Start tiles: <strong>{props.startTilesMode}</strong>
+          Start tiles: <strong>{startTilesMode}</strong>
         </p>
       </div>
       <p>
-        Completed goals: <strong>{props.goalsCompleted}</strong>
+        Completed goals: <strong>{goalsCompleted}</strong>
       </p>
     </div>
   );
-}
-
-export default BingoInfo;
+};
