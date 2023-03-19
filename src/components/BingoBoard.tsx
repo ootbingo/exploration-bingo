@@ -1,68 +1,19 @@
-import React, { useCallback, useEffect, useState } from "react";
-import { getStartTiles, StartTilesMode } from "../lib/startingTileModes";
+import React, { useCallback } from "react";
 import { BingoTile } from "./BingoTile";
 import { PopoutTile } from "./PopoutTile";
+import { useExploBoard } from "../hooks/useExploBoard";
 
-interface Props {
-  goals: string[];
-  seed: number;
-  startTilesMode: StartTilesMode;
-  setGoalsCompleted: (numberOfGoals: number) => void;
+interface BoardProps {
+  exploBoard: ReturnType<typeof useExploBoard>;
 }
 
-export const BingoBoard: React.FC<Props> = ({ goals, seed, startTilesMode, setGoalsCompleted }) => {
-  const [clicks, setClicks] = useState<number[]>(Array(25).fill(0));
-
-  const calculateColor = useCallback(
+export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
+  const createBingoTile = useCallback(
     (position: number) => {
-      if (clicks[position] % 3 === 1) {
-        return "green";
-      }
-      if (clicks[position] % 3 === 2) return "red";
-      return "";
+      return <BingoTile position={position} exploBoard={exploBoard} />;
     },
-    [clicks]
+    [exploBoard]
   );
-
-  useEffect(() => {
-    const colorCount = clicks.filter((_, position) => calculateColor(position) !== "").length;
-    setGoalsCompleted(colorCount);
-  }, [clicks, calculateColor, setGoalsCompleted]);
-
-  function onTileClick(position: number) {
-    incrementClicks(position);
-  }
-
-  function incrementClicks(position: number) {
-    setClicks((prevClicks) => {
-      const newClicks = [...prevClicks];
-      newClicks[position] = newClicks[position] + 1;
-      return newClicks;
-    });
-  }
-
-  function isHidden(position: number): boolean {
-    const startTiles = getStartTiles(startTilesMode, seed);
-    if (startTiles.includes(position)) {
-      return false;
-    }
-    return !getAdjacentPositions(position)
-      .map((adjacentPosition) => clicks[adjacentPosition])
-      .some((clicks) => clicks > 0);
-  }
-
-  const createBingoTile = (position: number) => {
-    return (
-      <BingoTile
-        key={position}
-        rows={calculateRows(position)}
-        color={calculateColor(position)}
-        goal={goals[position]}
-        hidden={isHidden(position)}
-        onClick={() => onTileClick(position)}
-      />
-    );
-  };
 
   return (
     <div id="results">
@@ -106,34 +57,3 @@ export const BingoBoard: React.FC<Props> = ({ goals, seed, startTilesMode, setGo
     </div>
   );
 };
-
-function calculateRows(position: number) {
-  const row = Math.floor(position / 5) + 1;
-  const col = (position % 5) + 1;
-
-  let rows = [`row${row}`, `col${col}`];
-  if (row === col) {
-    rows = rows.concat("tlbr");
-  }
-  if (row + col === 6) {
-    rows = rows.concat("bltr");
-  }
-  return rows;
-}
-
-function getAdjacentPositions(position: number): number[] {
-  const adjacentPositions: number[] = [];
-  if (position > 4) {
-    adjacentPositions.push(position - 5);
-  }
-  if (position < 20) {
-    adjacentPositions.push(position + 5);
-  }
-  if (position % 5 !== 0) {
-    adjacentPositions.push(position - 1);
-  }
-  if (position % 5 !== 4) {
-    adjacentPositions.push(position + 1);
-  }
-  return adjacentPositions;
-}

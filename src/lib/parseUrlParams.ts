@@ -9,7 +9,7 @@ export type Options = {
   tiles: StartTilesMode;
 };
 
-export function parseUrlParams(urlParams: URLSearchParams, updateUrl?: boolean): Options {
+export const parseUrlParams = (urlParams: URLSearchParams, updateUrl?: boolean): Options => {
   const urlSeed = urlParams.get("seed");
   const seed = parseInt(urlSeed || "") || Math.floor(Math.random() * 999999);
 
@@ -43,4 +43,4 @@ export function parseUrlParams(urlParams: URLSearchParams, updateUrl?: boolean):
     mode: mode,
     tiles: tiles,
   };
-}
+};

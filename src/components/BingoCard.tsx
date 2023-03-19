@@ -1,43 +1,41 @@
-import React, { useState } from "react";
+import React from "react";
 import { getBingoList } from "oot-bingo-lists";
 import { generateBingoBoard } from "oot-bingo-generator";
 import { Options } from "../lib/parseUrlParams";
 import { BingoBoard } from "./BingoBoard";
 import { BingoInfo } from "./BingoInfo";
+import { useExploBoard } from "../hooks/useExploBoard";
+import { getStartTiles } from "../lib/startingTileModes";
 
 interface Props {
   options: Options;
 }
 
 export const BingoCard: React.FC<Props> = ({ options }) => {
-  const [goalsCompleted, setGoalsCompleted] = useState<number>(0);
-
-  if (options.seed === -1) {
-    return <></>;
-  }
-
   const { seed, version, mode, tiles } = options;
 
   const explorationSeed = seed + 1765913;
 
   const bingoList = getBingoList(version);
   const board = generateBingoBoard(bingoList, mode, explorationSeed);
-  const goals = board?.goalNames || [];
+  const goalNames = board?.goalNames || [];
+
+  const startTiles = getStartTiles(tiles, seed);
+  const exploBoard = useExploBoard(startTiles, goalNames);
+
+  if (seed === -1) {
+    return null;
+  }
 
   return (
     <>
-      <BingoBoard
-        goals={goals}
-        startTilesMode={tiles}
-        seed={seed}
-        setGoalsCompleted={setGoalsCompleted}
-      />
+      <BingoBoard exploBoard={exploBoard} />
       <BingoInfo
         seed={seed}
         version={version}
         mode={mode}
         startTilesMode={tiles}
-        goalsCompleted={goalsCompleted}
+        goalsCompleted={exploBoard.numberCompleted}
       />
     </>
   );

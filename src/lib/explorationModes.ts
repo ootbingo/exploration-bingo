@@ -1,7 +1,7 @@
 export type ExplorationMode = "blackout" | "shortBlackout";
 export type UrlExplorationMode = "blackout" | "short-blackout";
 
-export function toExplorationMode(str: string | null): ExplorationMode {
+export const toExplorationMode = (str: string | null): ExplorationMode => {
   switch (str?.toLowerCase()) {
     case "blackout":
       return "blackout";
@@ -11,9 +11,9 @@ export function toExplorationMode(str: string | null): ExplorationMode {
     default:
       return "blackout";
   }
-}
+};
 
-export function toUrlExplorationMode(str: string | null): UrlExplorationMode {
+export const toUrlExplorationMode = (str: string | null): UrlExplorationMode => {
   switch (str?.toLowerCase()) {
     case "blackout":
       return "blackout";
@@ -23,13 +23,13 @@ export function toUrlExplorationMode(str: string | null): UrlExplorationMode {
     default:
       return "blackout";
   }
-}
+};
 
-export function displayExplorationMode(mode: ExplorationMode): string {
+export const displayExplorationMode = (mode: ExplorationMode): string => {
   switch (mode) {
     case "blackout":
       return "Blackout";
     case "shortBlackout":
       return "Short Blackout";
   }
-}
+};
