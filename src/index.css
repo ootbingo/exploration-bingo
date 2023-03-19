@@ -17,26 +17,11 @@ body {
 }
 
 .container {
+    min-height: 100%;
     width: 976px;
     margin: 0 auto;
-    padding: 8px 0 16px 16px;
+    padding: 8px 0 44px 16px;
     overflow: auto;
-}
-
-
-#wrap {
-    min-height: 100%;
-}
-
-main {
-    padding-bottom: 28px;
-}
-
-nav ul {
-    margin: 0;
-    padding: 0;
-    text-indent: 0;
-    clear: both;
 }
 
 ::selection {
@@ -95,7 +80,7 @@ a:hover {
 
 p {
     margin: 0;
-    padding: 0 0 11.2px;
+    padding: 0 0 11px;
     line-height: 1.35rem;
 }
 
@@ -114,7 +99,7 @@ ul li {
 
 li {
     line-height: 1.35rem;
-    padding-bottom: 11.2px;
+    padding-bottom: 11px;
 }
 
 table {
@@ -159,7 +144,7 @@ th {
     margin-left: 14px;
 }
 
-#bingoPage .newcard {
+#bingoPage .newCard {
     background-color: #424242;
     background-image: linear-gradient(to bottom, #424242, #303030);
     border-width: 2px;
@@ -179,7 +164,7 @@ th {
     padding: 4px 0;
 }
 
-#bingoPage .newcard:hover {
+#bingoPage .newCard:hover {
     background-color: #3c70df;
     background-image: linear-gradient(to bottom, #3c70df, #235cd4);
     border-width: 2px;
@@ -188,7 +173,7 @@ th {
     color: #ffffff;
 }
 
-#bingoPage .newcard:active {
+#bingoPage .newCard:active {
     background-color: #1448b3;
     background-image: linear-gradient(to bottom, #1448b3, #103b93);
     box-shadow: 0 0 0 rgba(0, 0, 0, 0.6);
@@ -198,7 +183,7 @@ th {
     color: #ffffff;
 }
 
-#bingoPage .newcard:last-child {
+#bingoPage .newCard:last-child {
     margin-right: 0;
 }
 
@@ -240,7 +225,6 @@ th {
     border-color: #164fc5 #071a40 #071a40 #154cbc;
     color: #ffffff;
 }
-
 
 #bingoPage .smallerButton:last-child {
     margin-right: 0;
@@ -299,15 +283,15 @@ th {
     background: #1448b3;
 }
 
-#bingoPage #bingo tr td.greensquare {
+#bingoPage #bingo tr td.greenSquare {
     background: #005511;
 }
 
-#bingoPage #bingo tr td.redsquare {
+#bingoPage #bingo tr td.redSquare {
     background: #550011;
 }
 
-#bingoPage #about_bingo {
+#bingoPage #aboutBingo {
     float: right;
     width: 350px;
     margin-right: 16px;

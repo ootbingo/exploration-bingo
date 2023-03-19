@@ -13,11 +13,11 @@ export const BingoTile: React.FC<Props> = ({ position, exploBoard }) => {
   const color = exploBoard.getColorOfTile(position);
 
   if (color === TileColor.GREEN) {
-    classes.push("greensquare");
+    classes.push("greenSquare");
   }
 
   if (color === TileColor.RED) {
-    classes.push("redsquare");
+    classes.push("redSquare");
   }
 
   if (!exploBoard.getVisibilityOfTile(position)) {

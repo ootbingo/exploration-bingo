@@ -6,22 +6,22 @@ const { version, mode, tiles } = parseUrlParams(new URLSearchParams(window.locat
 
 export const AboutBingo: React.FC = () => {
   return (
-    <div id="about_bingo">
+    <div id="aboutBingo">
       <h1>Ocarina of Time Bingo</h1>
-      <div id="newcards" />
+      <div id="newCards" />
 
       <h2>Card</h2>
 
       <div style={{ clear: "both" }}>
         <div style={{ display: "inline-flex", flexDirection: "row", alignItems: "center" }}>
           <a
-            className={"newcard" + (mode === "blackout" ? " buttonSelected" : "")}
+            className={"newCard" + (mode === "blackout" ? " buttonSelected" : "")}
             href={`?version=${version}&mode=blackout&start-tiles=${tiles}`}
           >
             Blackout
           </a>
           <a
-            className={"newcard" + (mode === "shortBlackout" ? " buttonSelected" : "")}
+            className={"newCard" + (mode === "shortBlackout" ? " buttonSelected" : "")}
             href={`?version=${version}&mode=short-blackout&start-tiles=${tiles}`}
           >
             Short Blackout

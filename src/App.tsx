@@ -4,12 +4,8 @@ import { BingoPage } from "./components/BingoPage";
 class App extends React.Component {
   render() {
     return (
-      <div id="wrap">
-        <main>
-          <div className="container" id="pageContent">
-            <BingoPage />
-          </div>
-        </main>
+      <div className="container" id="pageContent">
+        <BingoPage />
       </div>
     );
   }
