@@ -1,34 +1,48 @@
 import React from "react";
+import { TileColor } from "../lib/tileColors";
+import { useExploBoard } from "../hooks/useExploBoard";
 
-interface BingoTileProps {
-  rows: string[];
-  color: string;
-  goal: string;
-  hidden: boolean;
-  onClick: () => void;
+interface Props {
+  position: number;
+  exploBoard: ReturnType<typeof useExploBoard>;
 }
 
-function BingoTile(props: BingoTileProps) {
-  const classes = props.rows;
+export const BingoTile: React.FC<Props> = ({ position, exploBoard }) => {
+  const classes = calculateRows(position);
 
-  if (props.color === "green") {
+  const color = exploBoard.getColorOfTile(position);
+
+  if (color === TileColor.GREEN) {
     classes.push("greensquare");
   }
-  if (props.color === "red") {
+
+  if (color === TileColor.RED) {
     classes.push("redsquare");
   }
 
-  if (props.hidden) {
+  if (!exploBoard.getVisibilityOfTile(position)) {
     classes.push("hidden");
   }
 
   const className = classes.join(" ");
 
   return (
-    <td className={className} onClick={props.onClick}>
-      {props.goal}
+    <td className={className} key={position} onClick={() => exploBoard.onTileClick(position)}>
+      {exploBoard.getGoalNameOfTile(position)}
     </td>
   );
-}
+};
 
-export default BingoTile;
+const calculateRows = (position: number) => {
+  const row = Math.floor(position / 5) + 1;
+  const col = (position % 5) + 1;
+
+  let rows = [`row${row}`, `col${col}`];
+  if (row === col) {
+    rows = rows.concat("tlbr");
+  }
+  if (row + col === 6) {
+    rows = rows.concat("bltr");
+  }
+  return rows;
+};

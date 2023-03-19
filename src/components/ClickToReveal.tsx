@@ -1,15 +1,13 @@
 import React from "react";
 
-interface RevealProps {
+interface Props {
   onClick: () => void;
 }
 
-function ClickToReveal(props: RevealProps) {
+export const ClickToReveal: React.FC<Props> = ({ onClick }) => {
   return (
-    <div id="clickToReveal" onClick={props.onClick}>
+    <div id="clickToReveal" onClick={onClick}>
       Click to reveal
     </div>
   );
-}
-
-export default ClickToReveal;
+};

@@ -1,5 +1,5 @@
 import React from "react";
-import BingoPage from "./components/BingoPage";
+import { BingoPage } from "./components/BingoPage";
 
 class App extends React.Component {
   render() {
@@ -14,6 +14,5 @@ class App extends React.Component {
     );
   }
 }
-
 
 export default App;

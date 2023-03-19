@@ -1,8 +1,15 @@
-import { isBingoVersion, latestBingoVersion } from "oot-bingo-lists";
-import { toExplorationMode, toUrlExplorationMode } from "./explorationModes";
-import { toStartTileMode } from "./startingTileModes";
+import { BingoVersion, isBingoVersion, latestBingoVersion } from "oot-bingo-lists";
+import { ExplorationMode, toExplorationMode, toUrlExplorationMode } from "./explorationModes";
+import { StartTilesMode, toStartTileMode } from "./startingTileModes";
 
-export function parseUrlParams(urlParams: URLSearchParams, updateUrl?: boolean) {
+export type Options = {
+  seed: number;
+  version: BingoVersion;
+  mode: ExplorationMode;
+  tiles: StartTilesMode;
+};
+
+export const parseUrlParams = (urlParams: URLSearchParams, updateUrl?: boolean): Options => {
   const urlSeed = urlParams.get("seed");
   const seed = parseInt(urlSeed || "") || Math.floor(Math.random() * 999999);
 
@@ -36,4 +43,4 @@ export function parseUrlParams(urlParams: URLSearchParams, updateUrl?: boolean) 
     mode: mode,
     tiles: tiles,
   };
-}
+};

@@ -1,47 +1,42 @@
-import React, { useState } from "react";
-import BingoBoard from "./BingoBoard";
-import BingoInfo from "./BingoInfo";
+import React from "react";
 import { getBingoList } from "oot-bingo-lists";
 import { generateBingoBoard } from "oot-bingo-generator";
-import { parseUrlParams } from "../lib/parseUrlParams";
+import { Options } from "../lib/parseUrlParams";
+import { BingoBoard } from "./BingoBoard";
+import { BingoInfo } from "./BingoInfo";
+import { useExploBoard } from "../hooks/useExploBoard";
+import { getStartTiles } from "../lib/startingTileModes";
 
-const urlParams = new URLSearchParams(window.location.search);
+interface Props {
+  options: Options;
+}
 
-const { seed, version, mode, tiles } = parseUrlParams(urlParams, true);
+export const BingoCard: React.FC<Props> = ({ options }) => {
+  const { seed, version, mode, tiles } = options;
 
-const explorationSeed = seed + 1765913;
+  const explorationSeed = seed + 1765913;
 
-const bingoList = getBingoList(version);
-const board = generateBingoBoard(bingoList, mode, explorationSeed);
-const goals = board?.goalNames || [];
+  const bingoList = getBingoList(version);
+  const board = generateBingoBoard(bingoList, mode, explorationSeed);
+  const goalNames = board?.goalNames || [];
 
-function BingoCard() {
-  const [goalsCompleted, setGoalsCompleted] = useState(0);
-  const onGreen = () => setGoalsCompleted(goalsCompleted + 1);
-  const onRed = () => setGoalsCompleted(goalsCompleted - 1);
+  const startTiles = getStartTiles(tiles, seed);
+  const exploBoard = useExploBoard(startTiles, goalNames);
 
   if (seed === -1) {
-    return <></>;
+    return null;
   }
 
   return (
     <>
-      <BingoBoard
-        goals={goals}
-        startTilesMode={tiles}
-        seed={seed}
-        onGreen={onGreen}
-        onRed={onRed}
-      />
+      <BingoBoard exploBoard={exploBoard} />
       <BingoInfo
         seed={seed}
         version={version}
         mode={mode}
         startTilesMode={tiles}
-        goalsCompleted={goalsCompleted}
+        goalsCompleted={exploBoard.numberCompleted}
       />
     </>
   );
-}
-
-export default BingoCard;
+};

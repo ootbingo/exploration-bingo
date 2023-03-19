@@ -1,23 +1,28 @@
-import React, { useState } from "react";
-import AboutBingo from "./AboutBingo";
-import ClickToReveal from "./ClickToReveal";
-import BingoCard from "./BingoCard";
+import React, { useEffect, useState } from "react";
+import { Options, parseUrlParams } from "../lib/parseUrlParams";
+import { BingoCard } from "./BingoCard";
+import { AboutBingo } from "./AboutBingo";
+import { ClickToReveal } from "./ClickToReveal";
 
-function BingoPage() {
+export const BingoPage: React.FC = () => {
+  const [options, setOptions] = useState<Options | undefined>(undefined);
   const [boardRevealed, setBoardRevealed] = useState(false);
 
-  const bingoContent = boardRevealed ? (
-    <BingoCard />
-  ) : (
-    <ClickToReveal onClick={() => setBoardRevealed(true)} />
-  );
+  const showCard = boardRevealed && !!options;
+
+  useEffect(() => {
+    const urlParams = new URLSearchParams(window.location.search);
+    setOptions(parseUrlParams(urlParams, true));
+  }, []);
 
   return (
     <div id="bingoPage">
       <AboutBingo />
-      {bingoContent}
+      {showCard ? (
+        <BingoCard options={options} />
+      ) : (
+        <ClickToReveal onClick={() => setBoardRevealed(true)} />
+      )}
     </div>
   );
-}
-
-export default BingoPage;
+};
