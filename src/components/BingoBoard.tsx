@@ -16,8 +16,8 @@ export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
   );
 
   return (
-    <div id="results">
-      <table id="bingo">
+    <div id="boardDiv">
+      <table id="bingoTable">
         <tbody>
           <tr>
             <PopoutTile name="tl-br" />

@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Options, parseUrlParams } from "../lib/parseUrlParams";
-import { BingoCard } from "./BingoCard";
 import { AboutBingo } from "./AboutBingo";
+import styled from "styled-components";
+import { BingoCard } from "./BingoCard";
 import { ClickToReveal } from "./ClickToReveal";
 
 export const BingoPage: React.FC = () => {
@@ -16,13 +17,34 @@ export const BingoPage: React.FC = () => {
   }, []);
 
   return (
-    <div id="bingoPage">
+    <BingoPageDiv id="bingoPage">
+      <BingoCardContainer id="bingoCardContainer">
+        {showCard ? (
+          <BingoCard options={options!} />
+        ) : (
+          <ClickToReveal onClick={() => setBoardRevealed(true)} />
+        )}
+      </BingoCardContainer>
+
       <AboutBingo />
-      {showCard ? (
-        <BingoCard options={options} />
-      ) : (
-        <ClickToReveal onClick={() => setBoardRevealed(true)} />
-      )}
-    </div>
+    </BingoPageDiv>
   );
 };
+
+const BingoPageDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  max-width: 1000px;
+`;
+
+const BingoCardContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 15px;
+  min-width: 594px;
+  height: 590px;
+`;

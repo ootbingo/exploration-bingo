@@ -1,19 +1,24 @@
 import { createGlobalStyle } from "styled-components";
 
 export const Colors = {
+  black: "#000",
   background: "#111111",
-  opal: "#bec7d2",
-  white: "#fff",
+  darkGrey: "#303030",
   mediumGrey: "#424242",
   lightGrey: "#808080",
-  darkBlue: "#000811",
+  opal: "#bec7d2",
+  white: "#fff",
+  darkestBlue: "#000811",
+  darkBlue: "#001a36",
   mediumBlue: "#0a245a",
   brightBlue: "#1448b3",
   lightBlue: "#3c70df",
   yellow: "#f7e279",
   orange: "#e09456",
   red: "#550011",
+  lightRed: "#770022",
   green: "#005511",
+  lightGreen: "#007722",
 } as const;
 
 export const GlobalStyle = createGlobalStyle`
@@ -47,8 +52,8 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   ::selection {
-    background: rgba(0, 0, 0, 0.6);
-    color: ${Colors.yellow};
+    background: ${Colors.mediumBlue};
+    color: ${Colors.white};
   }
 
   strong {
@@ -57,10 +62,10 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h1 {
-    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-family: ' Roboto ', Helvetica, Arial, sans-serif;
     font-weight: bold;
     font-size: 1.50rem;
-    line-height: 1.15rem;
+    line-height: 1.45rem;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.5);
     color: ${Colors.orange};
     margin: 8px 0 8px 0;
@@ -79,7 +84,7 @@ export const GlobalStyle = createGlobalStyle`
   }
 
   h2 {
-    font-family: 'Roboto', Helvetica, Arial, sans-serif;
+    font-family: ' Roboto ', Helvetica, Arial, sans-serif;
     font-weight: bold;
     font-size: 1.06rem;
     line-height: 1.15rem;

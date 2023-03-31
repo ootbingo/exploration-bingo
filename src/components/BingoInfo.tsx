@@ -2,6 +2,7 @@ import React from "react";
 import { BingoVersion } from "oot-bingo-lists";
 import { displayExplorationMode, ExplorationMode } from "../lib/explorationModes";
 import { StartTilesMode } from "../lib/startingTileModes";
+import styled from "styled-components";
 
 interface Props {
   seed: number;
@@ -19,24 +20,41 @@ export const BingoInfo: React.FC<Props> = ({
   goalsCompleted,
 }) => {
   return (
-    <div id="results">
-      <div id="cardInfo">
-        <p className="infoBlock">
+    <InfoDiv id="bingoInfo">
+      <InfoRow id="cardInfo">
+        <InfoItem>
           Version: <strong>{version}</strong>
-        </p>
-        <p className="infoBlock">
+        </InfoItem>
+        <InfoItem>
           Seed: <strong>{seed}</strong>
-        </p>
-        <p className="infoBlock">
+        </InfoItem>
+        <InfoItem>
           Mode: <strong>{displayExplorationMode(mode)}</strong>
-        </p>
-        <p className="infoBlock">
+        </InfoItem>
+        <InfoItem>
           Start tiles: <strong>{startTilesMode}</strong>
-        </p>
-      </div>
-      <p>
-        Completed goals: <strong>{goalsCompleted}</strong>
-      </p>
-    </div>
+        </InfoItem>
+      </InfoRow>
+      <InfoRow>
+        <InfoItem>
+          Completed goals: <strong>{goalsCompleted}</strong>
+        </InfoItem>
+      </InfoRow>
+    </InfoDiv>
   );
 };
+
+const InfoDiv = styled.div`
+  align-items: flex-end;
+  display: flex;
+  flex-direction: column;
+`;
+
+const InfoRow = styled.div`
+  display: flex;
+  flex-direction: row;
+`;
+
+const InfoItem = styled.p`
+  margin-left: 12px;
+`;

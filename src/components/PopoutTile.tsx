@@ -11,14 +11,16 @@ export const PopoutTile: React.FC<Props> = ({ name }) => {
 };
 
 const StyledTile = styled.td`
-  //height: 30px;
+  text-align: center;
+  padding: 5px;
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.6);
-  background: ${Colors.darkBlue};
+  background: ${Colors.darkestBlue};
   font-size: 75%;
   color: ${Colors.lightBlue};
   font-weight: 700;
   border: 1px ${Colors.mediumBlue} solid;
   text-transform: uppercase;
+  user-select: none;
 
   &:hover {
     color: ${Colors.white};
