@@ -1,13 +1,17 @@
-import React, { useCallback } from "react";
+import React, { useCallback, useState } from "react";
 import { BingoTile } from "./BingoTile";
 import { PopoutTile } from "./PopoutTile";
 import { useExploBoard } from "../hooks/useExploBoard";
+import { ClickToReveal } from "./ClickToReveal";
+import styled from "styled-components";
 
 interface BoardProps {
   exploBoard: ReturnType<typeof useExploBoard>;
 }
 
 export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
+  const [boardRevealed, setBoardRevealed] = useState(false);
+
   const createBingoTile = useCallback(
     (position: number) => {
       return <BingoTile position={position} exploBoard={exploBoard} />;
@@ -15,8 +19,16 @@ export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
     [exploBoard]
   );
 
+  if (!boardRevealed) {
+    return (
+      <BoardDiv>
+        <ClickToReveal onClick={() => setBoardRevealed(true)} />
+      </BoardDiv>
+    );
+  }
+
   return (
-    <div id="boardDiv">
+    <BoardDiv>
       <table id="bingoTable">
         <tbody>
           <tr>
@@ -54,6 +66,13 @@ export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
           </tr>
         </tbody>
       </table>
-    </div>
+    </BoardDiv>
   );
 };
+
+const BoardDiv = styled.div`
+  margin-top: 15px;
+  height: 515px;
+  min-width: 594px;
+  border: 1px solid yellow;
+`;

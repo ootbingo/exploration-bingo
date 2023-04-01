@@ -18,6 +18,7 @@ const ClickToRevealDiv = styled.div`
   display: flex;
   justify-content: center;
   width: 100%;
+  height: 100%;
   padding-top: 40%;
   background-color: rgb(13, 13, 13);
   font-size: 18px;
