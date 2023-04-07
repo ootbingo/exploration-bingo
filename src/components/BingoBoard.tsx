@@ -72,7 +72,7 @@ export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
 
 const BoardDiv = styled.div`
   margin-top: 15px;
+  margin-bottom: 5px;
   height: 515px;
   min-width: 594px;
-  border: 1px solid yellow;
 `;

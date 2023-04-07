@@ -10,7 +10,7 @@ const { version, mode, tiles } = parseUrlParams(new URLSearchParams(window.locat
 export const AboutBingo: React.FC = () => {
   return (
     <AboutView id="aboutBingo">
-      <h1>Ocarina of Time Exploration Bingo</h1>
+      <h1>OoT Exploration Bingo</h1>
 
       <h2>Card</h2>
 

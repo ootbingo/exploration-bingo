@@ -30,5 +30,5 @@ const BingoPageDiv = styled.div`
   justify-content: center;
   height: 100%;
   width: 100%;
-  max-width: 1000px;
+  max-width: 964px;
 `;
