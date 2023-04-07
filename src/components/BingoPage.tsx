@@ -1,28 +1,34 @@
 import React, { useEffect, useState } from "react";
 import { Options, parseUrlParams } from "../lib/parseUrlParams";
-import { BingoCard } from "./BingoCard";
 import { AboutBingo } from "./AboutBingo";
-import { ClickToReveal } from "./ClickToReveal";
+import styled from "styled-components";
+import { BingoCard } from "./BingoCard";
 
 export const BingoPage: React.FC = () => {
   const [options, setOptions] = useState<Options | undefined>(undefined);
-  const [boardRevealed, setBoardRevealed] = useState(false);
-
-  const showCard = boardRevealed && !!options;
 
   useEffect(() => {
     const urlParams = new URLSearchParams(window.location.search);
     setOptions(parseUrlParams(urlParams, true));
   }, []);
 
+  if (!options) {
+    return null;
+  }
+
   return (
-    <div id="bingoPage">
+    <BingoPageDiv id="bingoPage">
+      <BingoCard options={options} />
       <AboutBingo />
-      {showCard ? (
-        <BingoCard options={options} />
-      ) : (
-        <ClickToReveal onClick={() => setBoardRevealed(true)} />
-      )}
-    </div>
+    </BingoPageDiv>
   );
 };
+
+const BingoPageDiv = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  height: 100%;
+  width: 100%;
+  max-width: 964px;
+`;

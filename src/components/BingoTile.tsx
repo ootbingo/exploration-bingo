@@ -1,6 +1,8 @@
 import React from "react";
 import { TileColor } from "../lib/tileColors";
 import { useExploBoard } from "../hooks/useExploBoard";
+import styled from "styled-components";
+import { Colors } from "../GlobalStyle";
 
 interface Props {
   position: number;
@@ -8,41 +10,52 @@ interface Props {
 }
 
 export const BingoTile: React.FC<Props> = ({ position, exploBoard }) => {
-  const classes = calculateRows(position);
-
-  const color = exploBoard.getColorOfTile(position);
-
-  if (color === TileColor.GREEN) {
-    classes.push("greenSquare");
-  }
-
-  if (color === TileColor.RED) {
-    classes.push("redSquare");
-  }
-
-  if (!exploBoard.getVisibilityOfTile(position)) {
-    classes.push("hidden");
-  }
-
-  const className = classes.join(" ");
-
   return (
-    <td className={className} key={position} onClick={() => exploBoard.onTileClick(position)}>
+    <StyledBingoTile
+      key={position}
+      onClick={() => exploBoard.onTileClick(position)}
+      $color={exploBoard.getColorOfTile(position)}
+      $isVisible={exploBoard.getVisibilityOfTile(position)}
+    >
       {exploBoard.getGoalNameOfTile(position)}
-    </td>
+    </StyledBingoTile>
   );
 };
 
-const calculateRows = (position: number) => {
-  const row = Math.floor(position / 5) + 1;
-  const col = (position % 5) + 1;
-
-  let rows = [`row${row}`, `col${col}`];
-  if (row === col) {
-    rows = rows.concat("tlbr");
+const tileColorToRgb = (color: TileColor, isHighlighted?: boolean) => {
+  if (isHighlighted) {
+    switch (color) {
+      case TileColor.BLACK:
+        return Colors.darkBlue;
+      case TileColor.GREEN:
+        return Colors.lightGreen;
+      case TileColor.RED:
+        return Colors.lightRed;
+    }
   }
-  if (row + col === 6) {
-    rows = rows.concat("bltr");
+  switch (color) {
+    case TileColor.BLACK:
+      return Colors.black;
+    case TileColor.GREEN:
+      return Colors.green;
+    case TileColor.RED:
+      return Colors.red;
   }
-  return rows;
 };
+
+const StyledBingoTile = styled.td<{ $color: TileColor; $isVisible: boolean }>`
+  background: ${(props) => tileColorToRgb(props.$color)};
+  box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.6);
+  padding: 0 5px;
+  cursor: pointer;
+  width: 20%;
+  height: 90px;
+  text-align: center;
+  border: 1px ${Colors.mediumGrey} solid;
+  visibility: ${(props) => (props.$isVisible ? "visible" : "hidden")};
+  user-select: none;
+
+  &:hover {
+    background: ${(props) => tileColorToRgb(props.$color, true)};
+  }
+`;

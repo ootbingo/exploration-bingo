@@ -1,49 +1,51 @@
 import React from "react";
 import { parseUrlParams } from "../lib/parseUrlParams";
+import styled from "styled-components";
+import { Button } from "./Button";
 import { toUrlExplorationMode } from "../lib/explorationModes";
+import { Colors } from "../GlobalStyle";
 
 const { version, mode, tiles } = parseUrlParams(new URLSearchParams(window.location.search));
 
 export const AboutBingo: React.FC = () => {
   return (
-    <div id="aboutBingo">
-      <h1>Ocarina of Time Bingo</h1>
-      <div id="newCards" />
+    <AboutView id="aboutBingo">
+      <h1>OoT Exploration Bingo</h1>
 
       <h2>Card</h2>
 
-      <div style={{ clear: "both" }}>
-        <div style={{ display: "inline-flex", flexDirection: "row", alignItems: "center" }}>
-          <a
-            className={"newCard" + (mode === "blackout" ? " buttonSelected" : "")}
-            href={`?version=${version}&mode=blackout&start-tiles=${tiles}`}
+      <div>
+        <ButtonsRow>
+          <AboutButton
+            isSelected={mode === "blackout"}
+            url={`?version=${version}&mode=blackout&start-tiles=${tiles}`}
           >
             Blackout
-          </a>
-          <a
-            className={"newCard" + (mode === "shortBlackout" ? " buttonSelected" : "")}
-            href={`?version=${version}&mode=short-blackout&start-tiles=${tiles}`}
+          </AboutButton>
+          <AboutButton
+            isSelected={mode === "shortBlackout"}
+            url={`?version=${version}&mode=short-blackout&start-tiles=${tiles}`}
           >
             Short Blackout
-          </a>
-        </div>
+          </AboutButton>
+        </ButtonsRow>
 
         <h2>Start tiles</h2>
 
-        <div style={{ display: "inline-flex", flexDirection: "row", alignItems: "center" }}>
-          <a
-            className={"smallerButton" + (tiles === "2" ? " buttonSelected" : "")}
-            href={`?version=${version}&mode=${toUrlExplorationMode(mode)}&start-tiles=2`}
+        <ButtonsRow>
+          <AboutButton
+            isSelected={tiles === "2"}
+            url={`?version=${version}&mode=${toUrlExplorationMode(mode)}&start-tiles=2`}
           >
             2
-          </a>
-          <a
-            className={"smallerButton" + (tiles === "4" ? " buttonSelected" : "")}
-            href={`?version=${version}&mode=${toUrlExplorationMode(mode)}&start-tiles=4`}
+          </AboutButton>
+          <AboutButton
+            isSelected={tiles === "4"}
+            url={`?version=${version}&mode=${toUrlExplorationMode(mode)}&start-tiles=4`}
           >
             4
-          </a>
-        </div>
+          </AboutButton>
+        </ButtonsRow>
 
         <div style={{ clear: "both" }} />
 
@@ -102,7 +104,7 @@ export const AboutBingo: React.FC = () => {
             allowed to exceed the required amount.
           </li>
         </ul>
-        <p className="note">
+        <Note className="note">
           EXPLORATION BINGO: Originally created by Gombill. Redesigned by xwillmarktheplace.
           <br />
           GENERATOR: Originally written and designed by Narcissa. Improved by Giuocob. v9 redesign
@@ -110,8 +112,32 @@ export const AboutBingo: React.FC = () => {
           GOAL LIST: Original goal list by Narcissa. v9.3 data collection and coordination by
           Gombill. Goal timing and data collection by Exodus, tob3000, Runnerguy2489, Tasselhoff,
           juwk, shaggy, and others in the community.
-        </p>
+        </Note>
       </div>
-    </div>
+    </AboutView>
   );
 };
+
+const AboutView = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 0 15px;
+
+  @media only screen and (max-width: 750px) {
+    display: none;
+  }
+`;
+
+const ButtonsRow = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+`;
+
+const AboutButton = styled(Button)`
+  margin-right: 10px;
+`;
+
+const Note = styled.p`
+  color: ${Colors.lightGrey};
+  font-size: 85%;
+`;

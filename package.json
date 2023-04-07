@@ -30,12 +30,14 @@
     "oot-bingo-generator": "^1.0.4",
     "oot-bingo-lists": "^1.2.0",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "styled-components": "^5.3.9"
   },
   "devDependencies": {
     "@types/node": "^17.0.34",
     "@types/react": "^18.0.9",
     "@types/react-dom": "^18.0.4",
+    "@types/styled-components": "^5.1.26",
     "gh-pages": "^4.0.0",
     "prettier": "^2.6.2",
     "react-scripts": "5.0.1",
