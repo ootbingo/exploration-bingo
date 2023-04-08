@@ -1,7 +1,8 @@
 import { useCallback, useState } from "react";
 import { getNextColor, TileColor } from "../lib/tileColors";
+import { Options } from "../lib/parseUrlParams";
 
-export const useExploBoard = (startTiles: number[], goalNames: string[]) => {
+export const useExploBoard = (startTiles: number[], goalNames: string[], options: Options) => {
   const [visibleTiles, setVisibleTiles] = useState<Set<number>>(new Set(startTiles));
   const [tileColors, setTileColors] = useState<TileColor[]>(Array(25).fill(TileColor.BLACK));
 
@@ -59,6 +60,7 @@ export const useExploBoard = (startTiles: number[], goalNames: string[]) => {
     getColorOfTile,
     getVisibilityOfTile,
     getGoalNameOfTile,
+    options,
   };
 };
 

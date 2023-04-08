@@ -7,6 +7,7 @@ export type Options = {
   version: BingoVersion;
   mode: ExplorationMode;
   tiles: StartTilesMode;
+  isPopout: boolean;
 };
 
 export const parseUrlParams = (urlParams: URLSearchParams, updateUrl?: boolean): Options => {
@@ -22,6 +23,9 @@ export const parseUrlParams = (urlParams: URLSearchParams, updateUrl?: boolean):
   const urlTiles = urlParams.get("start-tiles");
   const tiles = toStartTileMode(urlTiles);
 
+  const urlIsPopout = urlParams.get("popout");
+  const isPopout = urlIsPopout === "true";
+
   if (updateUrl) {
     if (
       seed.toString() !== urlSeed ||
@@ -33,14 +37,18 @@ export const parseUrlParams = (urlParams: URLSearchParams, updateUrl?: boolean):
       urlParams.set("version", version);
       urlParams.set("mode", toUrlExplorationMode(mode));
       urlParams.set("start-tiles", tiles);
+      if (isPopout) {
+        urlParams.set("popout", "true");
+      }
       window.location.search = urlParams.toString();
     }
   }
 
   return {
-    seed: seed,
-    version: version,
-    mode: mode,
-    tiles: tiles,
+    seed,
+    version,
+    mode,
+    tiles,
+    isPopout,
   };
 };

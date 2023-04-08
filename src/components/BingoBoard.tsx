@@ -19,17 +19,19 @@ export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
     [exploBoard]
   );
 
+  console.log(exploBoard.options.isPopout);
+
   if (!boardRevealed) {
     return (
-      <BoardDiv>
+      <BoardDiv id="bingoBoard" $isPopout={exploBoard.options.isPopout}>
         <ClickToReveal onClick={() => setBoardRevealed(true)} />
       </BoardDiv>
     );
   }
 
   return (
-    <BoardDiv>
-      <table id="bingoTable">
+    <BoardDiv id="bingoBoard" $isPopout={exploBoard.options.isPopout}>
+      <Table id="bingoTable">
         <tbody>
           <tr>
             <PopoutTile name="tl-br" />
@@ -60,19 +62,22 @@ export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
             <PopoutTile name="row5" />
             {[20, 21, 22, 23, 24].map(createBingoTile)}
           </tr>
-
           <tr>
             <PopoutTile name="bl-tr" />
           </tr>
         </tbody>
-      </table>
+      </Table>
     </BoardDiv>
   );
 };
 
-const BoardDiv = styled.div`
+const BoardDiv = styled.div<{ $isPopout: boolean }>`
   margin-top: 15px;
   margin-bottom: 5px;
-  height: 515px;
+  min-height: ${(props) => (props.$isPopout ? "100vh" : "515px")};
   min-width: 594px;
+`;
+
+const Table = styled.table`
+  height: 100%;
 `;

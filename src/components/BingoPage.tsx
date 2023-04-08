@@ -16,10 +16,18 @@ export const BingoPage: React.FC = () => {
     return null;
   }
 
+  if (options.isPopout) {
+    return (
+      <PopoutPageDiv>
+        <BingoCard options={options} />
+      </PopoutPageDiv>
+    );
+  }
+
   return (
     <BingoPageDiv id="bingoPage">
       <BingoCard options={options} />
-      <AboutBingo />
+      {!options.isPopout && <AboutBingo />}
     </BingoPageDiv>
   );
 };
@@ -31,4 +39,10 @@ const BingoPageDiv = styled.div`
   height: 100%;
   width: 100%;
   max-width: 964px;
+`;
+
+const PopoutPageDiv = styled(BingoPageDiv)`
+  max-width: initial;
+  flex-direction: column;
+  justify-content: center;
 `;

@@ -22,14 +22,14 @@ export const BingoCard: React.FC<Props> = ({ options }) => {
   const goalNames = board?.goalNames || [];
 
   const startTiles = getStartTiles(tiles, seed);
-  const exploBoard = useExploBoard(startTiles, goalNames);
+  const exploBoard = useExploBoard(startTiles, goalNames, options);
 
   if (seed === -1) {
     return null;
   }
 
   return (
-    <BingoCardDiv>
+    <BingoCardDiv id="bingoCard" $isPopout={options.isPopout}>
       <BingoBoard exploBoard={exploBoard} />
       <BingoInfo
         seed={seed}
@@ -42,10 +42,10 @@ export const BingoCard: React.FC<Props> = ({ options }) => {
   );
 };
 
-const BingoCardDiv = styled.div`
+const BingoCardDiv = styled.div<{ $isPopout: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 100%;
+  height: ${(props) => (props.$isPopout ? "100vh" : "515px")};
   width: 100%;
 `;
