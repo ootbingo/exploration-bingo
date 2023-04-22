@@ -48,6 +48,8 @@ const InfoDiv = styled.div`
   align-items: flex-end;
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
+  height: 100%;
 
   @media only screen and (max-height: 450px) {
     display: none;
@@ -61,4 +63,5 @@ const InfoRow = styled.div`
 
 const InfoItem = styled.p`
   margin-left: 12px;
+  padding: 0;
 `;

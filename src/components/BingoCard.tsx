@@ -3,7 +3,6 @@ import { getBingoList } from "oot-bingo-lists";
 import { generateBingoBoard } from "oot-bingo-generator";
 import { Options } from "../lib/parseUrlParams";
 import { BingoBoard } from "./BingoBoard";
-import { BingoInfo } from "./BingoInfo";
 import { useExploBoard } from "../hooks/useExploBoard";
 import { getStartTiles } from "../lib/startingTileModes";
 import styled from "styled-components";
@@ -12,6 +11,7 @@ interface Props {
   options: Options;
 }
 
+// todo merge this component with BingoBoard?
 export const BingoCard: React.FC<Props> = ({ options }) => {
   const { seed, version, mode, tiles } = options;
 
@@ -31,13 +31,6 @@ export const BingoCard: React.FC<Props> = ({ options }) => {
   return (
     <BingoCardDiv id="bingoCard" $isPopout={options.isPopout}>
       <BingoBoard exploBoard={exploBoard} />
-      <BingoInfo
-        seed={seed}
-        version={version}
-        mode={mode}
-        startTilesMode={tiles}
-        goalsCompleted={exploBoard.numberCompleted}
-      />
     </BingoCardDiv>
   );
 };
@@ -46,6 +39,6 @@ const BingoCardDiv = styled.div<{ $isPopout: boolean }>`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: ${(props) => (props.$isPopout ? "100vh" : "515px")};
+  height: ${(props) => (props.$isPopout ? "100vh" : "557px")};
   width: 100%;
 `;

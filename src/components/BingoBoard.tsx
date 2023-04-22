@@ -4,6 +4,7 @@ import { PopoutTile } from "./PopoutTile";
 import { useExploBoard } from "../hooks/useExploBoard";
 import { ClickToReveal } from "./ClickToReveal";
 import styled from "styled-components";
+import { BingoInfo } from "./BingoInfo";
 
 interface BoardProps {
   exploBoard: ReturnType<typeof useExploBoard>;
@@ -19,8 +20,6 @@ export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
     [exploBoard]
   );
 
-  console.log(exploBoard.options.isPopout);
-
   if (!boardRevealed) {
     return (
       <BoardDiv id="bingoBoard" $isPopout={exploBoard.options.isPopout}>
@@ -28,6 +27,16 @@ export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
       </BoardDiv>
     );
   }
+
+  const { options } = exploBoard;
+
+  const openBoardPopout = () => {
+    window.open(
+      window.location.href + "&popout=true",
+      "_blank",
+      "height=545, width=605, rel=noreferrer, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no"
+    );
+  };
 
   return (
     <BoardDiv id="bingoBoard" $isPopout={exploBoard.options.isPopout}>
@@ -64,6 +73,18 @@ export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
           </tr>
           <tr>
             <PopoutTile name="bl-tr" />
+            <BingoInfoTile colSpan={5} rowSpan={2}>
+              <BingoInfo
+                seed={options.seed}
+                version={options.version}
+                mode={options.mode}
+                startTilesMode={options.tiles}
+                goalsCompleted={exploBoard.numberCompleted}
+              />
+            </BingoInfoTile>
+          </tr>
+          <tr>
+            <PopoutTile name="board" onClick={openBoardPopout} />
           </tr>
         </tbody>
       </Table>
@@ -74,10 +95,16 @@ export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
 const BoardDiv = styled.div<{ $isPopout: boolean }>`
   margin-top: 15px;
   margin-bottom: 5px;
-  min-height: ${(props) => (props.$isPopout ? "100vh" : "515px")};
+  min-height: ${(props) => (props.$isPopout ? "100vh" : "557px")};
+  //border: 1px solid gainsboro;
   min-width: 594px;
 `;
 
 const Table = styled.table`
   height: 100%;
+`;
+
+const BingoInfoTile = styled.td`
+  height: 100%;
+  //border: 1px solid gainsboro;
 `;
