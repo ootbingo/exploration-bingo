@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { Colors } from "../GlobalStyle";
+import { Colors, StyleConsts } from "../GlobalStyle";
 
 interface Props {
   onClick: () => void;
@@ -23,6 +23,7 @@ const ClickToRevealDiv = styled.div`
   width: 100%;
   height: 100%;
   padding: 15px;
+  min-height: ${StyleConsts.squareHeight * 5}px;
   background-color: rgb(13, 13, 13);
   font-size: 18px;
   user-select: none;

@@ -49,7 +49,7 @@ const InfoDiv = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-evenly;
-  height: 100%;
+  height: 60px;
 `;
 
 const InfoRow = styled.div`

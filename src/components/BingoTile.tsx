@@ -18,7 +18,7 @@ export const BingoTile: React.FC<Props> = ({ position, exploBoard }) => {
       $isVisible={exploBoard.getVisibilityOfTile(position)}
       $isPopout={exploBoard.options.isPopout}
     >
-      {exploBoard.getGoalNameOfTile(position)}
+      <GoalDiv>{exploBoard.getGoalNameOfTile(position)}</GoalDiv>
     </StyledBingoTile>
   );
 };
@@ -47,10 +47,7 @@ const tileColorToRgb = (color: TileColor, isHighlighted?: boolean) => {
 const StyledBingoTile = styled.td<{ $color: TileColor; $isVisible: boolean; $isPopout: boolean }>`
   background: ${(props) => tileColorToRgb(props.$color)};
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.6);
-  padding: 0 5px;
   cursor: pointer;
-  height: ${(props) => (props.$isPopout ? "auto" : `${StyleConsts.squareHeight}px`)};
-  min-width: ${StyleConsts.squareWidth}px;
   text-align: center;
   border: 1px ${Colors.mediumGrey} solid;
   visibility: ${(props) => (props.$isVisible ? "visible" : "hidden")};
@@ -59,4 +56,14 @@ const StyledBingoTile = styled.td<{ $color: TileColor; $isVisible: boolean; $isP
   &:hover {
     background: ${(props) => tileColorToRgb(props.$color, true)};
   }
+`;
+
+const GoalDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height ${StyleConsts.squareHeight - 1}px;
+  min-width: ${StyleConsts.squareWidth - 1}px;
+  padding: 0 5px;
 `;

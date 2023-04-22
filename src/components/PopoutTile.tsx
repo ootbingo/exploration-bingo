@@ -32,12 +32,14 @@ const StyledTile = styled.td<{ onClick?: () => void; $type: "row" | "col" }>`
     props.$type === "row" &&
     css`
       width: ${StyleConsts.popoutTileWidth}px;
+      max-width: ${StyleConsts.popoutTileWidth}px;
     `};
 
   ${(props) =>
     props.$type === "col" &&
     css`
       height: ${StyleConsts.popoutTileHeight}px;
+      max-height: ${StyleConsts.popoutTileHeight}px;
     `};
 
   ${(props) =>

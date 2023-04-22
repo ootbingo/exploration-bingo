@@ -1,4 +1,4 @@
-import React, { useCallback, useState } from "react";
+import React, { useCallback, useMemo, useState } from "react";
 import { BingoTile } from "./BingoTile";
 import { PopoutTile } from "./PopoutTile";
 import { useExploBoard } from "../hooks/useExploBoard";
@@ -20,11 +20,12 @@ export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
 
   const { seed, version, mode, tiles } = options;
 
-  const explorationSeed = seed + 1765913;
-
-  const bingoList = getBingoList(version);
-  const board = generateBingoBoard(bingoList, mode, explorationSeed);
-  const goalNames = board?.goalNames || [];
+  const goalNames = useMemo(() => {
+    const explorationSeed = seed + 1765913;
+    const bingoList = getBingoList(version);
+    const board = generateBingoBoard(bingoList, mode, explorationSeed);
+    return board?.goalNames || [];
+  }, [seed, mode, version]);
 
   const startTiles = getStartTiles(tiles, seed);
   const exploBoard = useExploBoard(startTiles, goalNames, options);
@@ -39,13 +40,13 @@ export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
     [exploBoard, isRevealed]
   );
 
-  const openBoardPopout = () => {
+  const openBoardPopout = useCallback(() => {
     window.open(
       window.location.href + "&popout=true",
       "_blank",
-      "height=545, width=605, rel=noreferrer, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no"
+      "height=580, width=620, rel=noreferrer, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no"
     );
-  };
+  }, []);
 
   const bingoInfo = (
     <BingoInfo
@@ -122,8 +123,8 @@ const BoardDiv = styled.div<{ $isPopout: boolean }>`
 `;
 
 const RevealTd = styled.td<{ $isPopout: boolean }>`
-  height: ${(props) => (props.$isPopout ? "100%" : `${StyleConsts.squareHeight * 5}px`)};
-  min-width: ${(props) => (props.$isPopout ? "100%" : `${StyleConsts.squareWidth * 5}px`)};
+  height: 100%;
+  min-width: ${StyleConsts.squareWidth * 5}px;
 `;
 
 const Table = styled.table<{ $isPopout: boolean }>`
