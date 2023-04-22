@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Options, parseUrlParams } from "../lib/parseUrlParams";
 import { AboutBingo } from "./AboutBingo";
 import styled from "styled-components";
-import { BingoCard } from "./BingoCard";
+import { BingoBoard } from "./BingoBoard";
 
 export const BingoPage: React.FC = () => {
   const [options, setOptions] = useState<Options | undefined>(undefined);
@@ -18,15 +18,15 @@ export const BingoPage: React.FC = () => {
 
   if (options.isPopout) {
     return (
-      <PopoutPageDiv>
-        <BingoCard options={options} />
+      <PopoutPageDiv id="popoutPage">
+        <BingoBoard options={options} />
       </PopoutPageDiv>
     );
   }
 
   return (
     <BingoPageDiv id="bingoPage">
-      <BingoCard options={options} />
+      <BingoBoard options={options} />
       {!options.isPopout && <AboutBingo />}
     </BingoPageDiv>
   );

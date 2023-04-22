@@ -5,13 +5,28 @@ import { useExploBoard } from "../hooks/useExploBoard";
 import { ClickToReveal } from "./ClickToReveal";
 import styled from "styled-components";
 import { BingoInfo } from "./BingoInfo";
+import { getBingoList } from "oot-bingo-lists";
+import { generateBingoBoard } from "oot-bingo-generator";
+import { getStartTiles } from "../lib/startingTileModes";
+import { Options } from "../lib/parseUrlParams";
 
 interface BoardProps {
-  exploBoard: ReturnType<typeof useExploBoard>;
+  options: Options;
 }
 
-export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
+export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
   const [boardRevealed, setBoardRevealed] = useState(false);
+
+  const { seed, version, mode, tiles } = options;
+
+  const explorationSeed = seed + 1765913;
+
+  const bingoList = getBingoList(version);
+  const board = generateBingoBoard(bingoList, mode, explorationSeed);
+  const goalNames = board?.goalNames || [];
+
+  const startTiles = getStartTiles(tiles, seed);
+  const exploBoard = useExploBoard(startTiles, goalNames, options);
 
   const createBingoTile = useCallback(
     (position: number) => {
@@ -27,8 +42,6 @@ export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
       </BoardDiv>
     );
   }
-
-  const { options } = exploBoard;
 
   const openBoardPopout = () => {
     window.open(
@@ -95,8 +108,7 @@ export const BingoBoard: React.FC<BoardProps> = ({ exploBoard }) => {
 const BoardDiv = styled.div<{ $isPopout: boolean }>`
   margin-top: 15px;
   margin-bottom: 5px;
-  min-height: ${(props) => (props.$isPopout ? "100vh" : "557px")};
-  //border: 1px solid gainsboro;
+  height: ${(props) => (props.$isPopout ? "90vh" : "557px")};
   min-width: 594px;
 `;
 
@@ -106,5 +118,4 @@ const Table = styled.table`
 
 const BingoInfoTile = styled.td`
   height: 100%;
-  //border: 1px solid gainsboro;
 `;
