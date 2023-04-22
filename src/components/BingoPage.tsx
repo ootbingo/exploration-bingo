@@ -38,7 +38,7 @@ const BingoPageDiv = styled.div`
   justify-content: center;
   height: 100%;
   width: 100%;
-  max-width: 964px;
+  max-width: 960px;
 `;
 
 const PopoutPageDiv = styled(BingoPageDiv)`

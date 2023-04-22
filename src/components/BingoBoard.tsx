@@ -2,20 +2,21 @@ import React, { useCallback, useState } from "react";
 import { BingoTile } from "./BingoTile";
 import { PopoutTile } from "./PopoutTile";
 import { useExploBoard } from "../hooks/useExploBoard";
-import { ClickToPopout, ClickToReveal } from "./ClickTo";
+import { ClickToReveal } from "./ClickTo";
 import styled from "styled-components";
 import { BingoInfo } from "./BingoInfo";
 import { getBingoList } from "oot-bingo-lists";
 import { generateBingoBoard } from "oot-bingo-generator";
 import { getStartTiles } from "../lib/startingTileModes";
 import { Options } from "../lib/parseUrlParams";
+import { StyleConsts } from "../GlobalStyle";
 
 interface BoardProps {
   options: Options;
 }
 
 export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
-  const [boardRevealed, setBoardRevealed] = useState(false);
+  const [isRevealed, setIsRevealed] = useState(false);
 
   const { seed, version, mode, tiles } = options;
 
@@ -30,9 +31,12 @@ export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
 
   const createBingoTile = useCallback(
     (position: number) => {
+      if (!isRevealed) {
+        return null;
+      }
       return <BingoTile position={position} exploBoard={exploBoard} />;
     },
-    [exploBoard]
+    [exploBoard, isRevealed]
   );
 
   const openBoardPopout = () => {
@@ -53,29 +57,9 @@ export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
     />
   );
 
-  if (!boardRevealed) {
-    return (
-      <RevealDiv>
-        <BoardDiv id="bingoBoard" $isPopout={exploBoard.options.isPopout}>
-          <ClickToReveal text="Click to reveal" onClick={() => setBoardRevealed(true)} />
-        </BoardDiv>
-
-        {!options.isPopout && (
-          <>
-            <PopoutDiv>
-              <ClickToPopout text="Click to popout" onClick={openBoardPopout} />
-            </PopoutDiv>
-
-            {bingoInfo}
-          </>
-        )}
-      </RevealDiv>
-    );
-  }
-
   return (
-    <BoardDiv id="bingoBoard" $isPopout={exploBoard.options.isPopout}>
-      <Table id="bingoTable">
+    <BoardDiv id="bingoBoard" $isPopout={options.isPopout}>
+      <Table id="bingoTable" $isPopout={options.isPopout}>
         <tbody>
           <tr>
             <PopoutTile name="tl-br" />
@@ -89,6 +73,11 @@ export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
           <tr>
             <PopoutTile name="row1" />
             {[0, 1, 2, 3, 4].map(createBingoTile)}
+            {!isRevealed && (
+              <RevealTd $isPopout={options.isPopout} colSpan={5} rowSpan={5}>
+                <ClickToReveal onClick={() => setIsRevealed(true)} />
+              </RevealTd>
+            )}
           </tr>
           <tr>
             <PopoutTile name="row2" />
@@ -122,21 +111,16 @@ export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
 };
 
 const BoardDiv = styled.div<{ $isPopout: boolean }>`
-  margin: ${(props) => (props.$isPopout ? "0" : "15px 0 5px")};
-  height: ${(props) => (props.$isPopout ? "100%" : "557px")};
-  min-width: ${(props) => (props.$isPopout ? "100%" : "594px")};
+  margin: ${(props) => (props.$isPopout ? "0" : "24px 0 0")};
 `;
 
-const RevealDiv = styled.div`
-  height: 100%;
+const RevealTd = styled.td<{ $isPopout: boolean }>`
+  height: ${(props) => (props.$isPopout ? "100%" : `${StyleConsts.squareHeight * 5}px`)};
+  min-width: ${(props) => (props.$isPopout ? "100%" : `${StyleConsts.squareWidth * 5}px`)};
 `;
 
-const PopoutDiv = styled.div`
-  margin-bottom: 15px;
-`;
-
-const Table = styled.table`
-  height: 100%;
+const Table = styled.table<{ $isPopout: boolean }>`
+  height: ${(props) => (props.$isPopout ? "100%" : "auto")};
 `;
 
 const BingoInfoTile = styled.td`

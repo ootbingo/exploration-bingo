@@ -2,7 +2,7 @@ import React from "react";
 import { TileColor } from "../lib/tileColors";
 import { useExploBoard } from "../hooks/useExploBoard";
 import styled from "styled-components";
-import { Colors } from "../GlobalStyle";
+import { Colors, StyleConsts } from "../GlobalStyle";
 
 interface Props {
   position: number;
@@ -49,8 +49,8 @@ const StyledBingoTile = styled.td<{ $color: TileColor; $isVisible: boolean; $isP
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.6);
   padding: 0 5px;
   cursor: pointer;
-  height: ${(props) => (props.$isPopout ? "16.6%" : "90px")};
-  width: 18.6%;
+  height: ${(props) => (props.$isPopout ? "16.6%" : `${StyleConsts.squareHeight}px`)};
+  min-width: ${StyleConsts.squareWidth}px;
   text-align: center;
   border: 1px ${Colors.mediumGrey} solid;
   visibility: ${(props) => (props.$isVisible ? "visible" : "hidden")};

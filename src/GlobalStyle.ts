@@ -21,6 +21,13 @@ export const Colors = {
   lightGreen: "#007722",
 } as const;
 
+export const StyleConsts = {
+  squareHeight: 91,
+  squareWidth: 109.133,
+  popoutTileHeight: 31,
+  popoutTileWidth: 47.35,
+};
+
 export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
