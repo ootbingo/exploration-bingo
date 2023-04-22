@@ -49,7 +49,7 @@ const StyledBingoTile = styled.td<{ $color: TileColor; $isVisible: boolean; $isP
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.6);
   padding: 0 5px;
   cursor: pointer;
-  height: ${(props) => (props.$isPopout ? "17.6%" : "90px")};
+  height: ${(props) => (props.$isPopout ? "16.6%" : "90px")};
   width: 18.6%;
   text-align: center;
   border: 1px ${Colors.mediumGrey} solid;

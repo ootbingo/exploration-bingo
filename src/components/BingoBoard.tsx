@@ -97,7 +97,7 @@ export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
             </BingoInfoTile>
           </tr>
           <tr>
-            <PopoutTile name="board" onClick={openBoardPopout} />
+            <PopoutTile name="board" onClick={options.isPopout ? undefined : openBoardPopout} />
           </tr>
         </tbody>
       </Table>
@@ -106,10 +106,9 @@ export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
 };
 
 const BoardDiv = styled.div<{ $isPopout: boolean }>`
-  margin-top: 15px;
-  margin-bottom: 5px;
-  height: ${(props) => (props.$isPopout ? "90vh" : "557px")};
-  min-width: 594px;
+  margin: ${(props) => (props.$isPopout ? "0" : "15px 0 5px")};
+  height: ${(props) => (props.$isPopout ? "100%" : "557px")};
+  min-width: ${(props) => (props.$isPopout ? "100%" : "594px")};
 `;
 
 const Table = styled.table`

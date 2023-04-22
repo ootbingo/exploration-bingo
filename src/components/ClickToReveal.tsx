@@ -16,10 +16,11 @@ export const ClickToReveal: React.FC<Props> = ({ onClick }) => {
 
 const ClickToRevealDiv = styled.div`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   justify-content: center;
   width: 100%;
   height: 100%;
-  padding-top: 40%;
   background-color: rgb(13, 13, 13);
   font-size: 18px;
   user-select: none;

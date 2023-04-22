@@ -21,7 +21,6 @@ const StyledTile = styled.td<{ onClick?: () => void }>`
   font-weight: 700;
   border: 1px ${Colors.mediumBlue} solid;
   text-transform: uppercase;
-  max-width: 48px;
   user-select: none;
 
   ${(props) =>

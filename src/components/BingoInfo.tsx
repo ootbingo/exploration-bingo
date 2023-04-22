@@ -50,10 +50,6 @@ const InfoDiv = styled.div`
   flex-direction: column;
   justify-content: space-evenly;
   height: 100%;
-
-  @media only screen and (max-height: 450px) {
-    display: none;
-  }
 `;
 
 const InfoRow = styled.div`
