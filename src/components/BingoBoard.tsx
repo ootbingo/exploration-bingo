@@ -2,7 +2,7 @@ import React, { useCallback, useState } from "react";
 import { BingoTile } from "./BingoTile";
 import { PopoutTile } from "./PopoutTile";
 import { useExploBoard } from "../hooks/useExploBoard";
-import { ClickToReveal } from "./ClickToReveal";
+import { ClickToPopout, ClickToReveal } from "./ClickTo";
 import styled from "styled-components";
 import { BingoInfo } from "./BingoInfo";
 import { getBingoList } from "oot-bingo-lists";
@@ -35,14 +35,6 @@ export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
     [exploBoard]
   );
 
-  if (!boardRevealed) {
-    return (
-      <BoardDiv id="bingoBoard" $isPopout={exploBoard.options.isPopout}>
-        <ClickToReveal onClick={() => setBoardRevealed(true)} />
-      </BoardDiv>
-    );
-  }
-
   const openBoardPopout = () => {
     window.open(
       window.location.href + "&popout=true",
@@ -50,6 +42,36 @@ export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
       "height=545, width=605, rel=noreferrer, toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no"
     );
   };
+
+  const bingoInfo = (
+    <BingoInfo
+      seed={options.seed}
+      version={options.version}
+      mode={options.mode}
+      startTilesMode={options.tiles}
+      goalsCompleted={exploBoard.numberCompleted}
+    />
+  );
+
+  if (!boardRevealed) {
+    return (
+      <RevealDiv>
+        <BoardDiv id="bingoBoard" $isPopout={exploBoard.options.isPopout}>
+          <ClickToReveal text="Click to reveal" onClick={() => setBoardRevealed(true)} />
+        </BoardDiv>
+
+        {!options.isPopout && (
+          <>
+            <PopoutDiv>
+              <ClickToPopout text="Click to popout" onClick={openBoardPopout} />
+            </PopoutDiv>
+
+            {bingoInfo}
+          </>
+        )}
+      </RevealDiv>
+    );
+  }
 
   return (
     <BoardDiv id="bingoBoard" $isPopout={exploBoard.options.isPopout}>
@@ -87,13 +109,7 @@ export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
           <tr>
             <PopoutTile name="bl-tr" />
             <BingoInfoTile colSpan={5} rowSpan={2}>
-              <BingoInfo
-                seed={options.seed}
-                version={options.version}
-                mode={options.mode}
-                startTilesMode={options.tiles}
-                goalsCompleted={exploBoard.numberCompleted}
-              />
+              {bingoInfo}
             </BingoInfoTile>
           </tr>
           <tr>
@@ -109,6 +125,14 @@ const BoardDiv = styled.div<{ $isPopout: boolean }>`
   margin: ${(props) => (props.$isPopout ? "0" : "15px 0 5px")};
   height: ${(props) => (props.$isPopout ? "100%" : "557px")};
   min-width: ${(props) => (props.$isPopout ? "100%" : "594px")};
+`;
+
+const RevealDiv = styled.div`
+  height: 100%;
+`;
+
+const PopoutDiv = styled.div`
+  margin-bottom: 15px;
 `;
 
 const Table = styled.table`

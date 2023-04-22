@@ -45,6 +45,6 @@ const PopoutPageDiv = styled(BingoPageDiv)`
   max-width: initial;
   flex-direction: column;
   justify-content: center;
-  padding: 15px;
+  padding: 10px;
   height: 100vh;
 `;
