@@ -3,7 +3,7 @@ import { BingoTile } from "./BingoTile";
 import { PopoutTile } from "./PopoutTile";
 import { useExploBoard } from "../hooks/useExploBoard";
 import { ClickToReveal } from "./ClickTo";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import { BingoInfo } from "./BingoInfo";
 import { getBingoList } from "oot-bingo-lists";
 import { generateBingoBoard } from "oot-bingo-generator";
@@ -34,7 +34,7 @@ export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
       if (!isRevealed) {
         return null;
       }
-      return <BingoTile position={position} exploBoard={exploBoard} />;
+      return <BingoTile position={position} exploBoard={exploBoard} key={position} />;
     },
     [exploBoard, isRevealed]
   );
@@ -112,6 +112,13 @@ export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
 
 const BoardDiv = styled.div<{ $isPopout: boolean }>`
   margin: ${(props) => (props.$isPopout ? "0" : "24px 0 0")};
+
+  ${(props) =>
+    props.$isPopout &&
+    css`
+      height: 100%;
+    `}
+}
 `;
 
 const RevealTd = styled.td<{ $isPopout: boolean }>`

@@ -8,15 +8,18 @@ interface Props {
 }
 
 export const PopoutTile: React.FC<Props> = ({ name, onClick }) => {
-  return <StyledTile onClick={onClick}>{name}</StyledTile>;
+  const type = name.includes("row") ? "row" : "col";
+  return (
+    <StyledTile onClick={onClick} $type={type}>
+      {name}
+    </StyledTile>
+  );
 };
 
-const StyledTile = styled.td<{ onClick?: () => void }>`
+const StyledTile = styled.td<{ onClick?: () => void; $type: "row" | "col" }>`
   text-align: center;
   padding: 5px;
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.6);
-  height: ${StyleConsts.popoutTileHeight}px;
-  width: ${StyleConsts.popoutTileWidth}px;
   background: ${Colors.darkestBlue};
   font-size: 75%;
   color: ${Colors.lightBlue};
@@ -24,6 +27,18 @@ const StyledTile = styled.td<{ onClick?: () => void }>`
   border: 1px ${Colors.mediumBlue} solid;
   text-transform: uppercase;
   user-select: none;
+
+  ${(props) =>
+    props.$type === "row" &&
+    css`
+      width: ${StyleConsts.popoutTileWidth}px;
+    `};
+
+  ${(props) =>
+    props.$type === "col" &&
+    css`
+      height: ${StyleConsts.popoutTileHeight}px;
+    `};
 
   ${(props) =>
     props.onClick &&
