@@ -51,7 +51,7 @@ export const AboutBingo: React.FC = () => {
 
         <h2>About</h2>
 
-        <p>This is exploration bingo.</p>
+        <p>This is exploration bingo for Ocarina of Time.</p>
         <p>
           You start with two or four visible goals. Completing a goal reveals the adjacent goals
           (north, west, south, east).
@@ -122,6 +122,7 @@ const AboutView = styled.div`
   display: flex;
   flex-direction: column;
   padding: 0 15px;
+  margin-top: 5px;
 
   @media only screen and (max-width: 750px) {
     display: none;

@@ -1,16 +1,22 @@
 import React from "react";
-import styled from "styled-components";
-import { Colors } from "../GlobalStyle";
+import styled, { css } from "styled-components";
+import { Colors, StyleConsts } from "../GlobalStyle";
 
 interface Props {
   name: string;
+  onClick?: () => void;
 }
 
-export const PopoutTile: React.FC<Props> = ({ name }) => {
-  return <StyledTile>{name}</StyledTile>;
+export const PopoutTile: React.FC<Props> = ({ name, onClick }) => {
+  const type = name.includes("row") ? "row" : "col";
+  return (
+    <StyledTile onClick={onClick} $type={type}>
+      {name}
+    </StyledTile>
+  );
 };
 
-const StyledTile = styled.td`
+const StyledTile = styled.td<{ onClick?: () => void; $type: "row" | "col" }>`
   text-align: center;
   padding: 5px;
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.6);
@@ -22,8 +28,28 @@ const StyledTile = styled.td`
   text-transform: uppercase;
   user-select: none;
 
-  &:hover {
-    color: ${Colors.white};
-    background: ${Colors.brightBlue};
-  }
+  ${(props) =>
+    props.$type === "row" &&
+    css`
+      width: ${StyleConsts.popoutTileWidth}px;
+      max-width: ${StyleConsts.popoutTileWidth}px;
+    `};
+
+  ${(props) =>
+    props.$type === "col" &&
+    css`
+      height: ${StyleConsts.popoutTileHeight}px;
+      max-height: ${StyleConsts.popoutTileHeight}px;
+    `};
+
+  ${(props) =>
+    props.onClick &&
+    css`
+      cursor: pointer;
+
+      &:hover {
+        color: ${Colors.white};
+        background: ${Colors.brightBlue};
+      }
+    `}
 `;

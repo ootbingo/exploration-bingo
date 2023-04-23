@@ -16,6 +16,6 @@ export default App;
 
 const StyledPage = styled.div`
   display: flex;
-  flex-direction: row;
-  justify-content: center;
+  flex-direction: column;
+  align-items: center;
 `;

@@ -21,6 +21,13 @@ export const Colors = {
   lightGreen: "#007722",
 } as const;
 
+export const StyleConsts = {
+  squareHeight: 91,
+  squareWidth: 109.133,
+  popoutTileHeight: 31,
+  popoutTileWidth: 47.35,
+};
+
 export const GlobalStyle = createGlobalStyle`
   * {
     margin: 0;
@@ -40,10 +47,6 @@ export const GlobalStyle = createGlobalStyle`
     margin: 0;
     height: 100%;
     text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.3);
-  }
-
-  body {
-    overflow-y: scroll;
   }
 
   strong {

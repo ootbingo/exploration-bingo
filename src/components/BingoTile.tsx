@@ -2,7 +2,7 @@ import React from "react";
 import { TileColor } from "../lib/tileColors";
 import { useExploBoard } from "../hooks/useExploBoard";
 import styled from "styled-components";
-import { Colors } from "../GlobalStyle";
+import { Colors, StyleConsts } from "../GlobalStyle";
 
 interface Props {
   position: number;
@@ -16,8 +16,9 @@ export const BingoTile: React.FC<Props> = ({ position, exploBoard }) => {
       onClick={() => exploBoard.onTileClick(position)}
       $color={exploBoard.getColorOfTile(position)}
       $isVisible={exploBoard.getVisibilityOfTile(position)}
+      $isPopout={exploBoard.options.isPopout}
     >
-      {exploBoard.getGoalNameOfTile(position)}
+      <GoalDiv>{exploBoard.getGoalNameOfTile(position)}</GoalDiv>
     </StyledBingoTile>
   );
 };
@@ -43,13 +44,10 @@ const tileColorToRgb = (color: TileColor, isHighlighted?: boolean) => {
   }
 };
 
-const StyledBingoTile = styled.td<{ $color: TileColor; $isVisible: boolean }>`
+const StyledBingoTile = styled.td<{ $color: TileColor; $isVisible: boolean; $isPopout: boolean }>`
   background: ${(props) => tileColorToRgb(props.$color)};
   box-shadow: inset 0 0 50px rgba(0, 0, 0, 0.6);
-  padding: 0 5px;
   cursor: pointer;
-  width: 20%;
-  height: 90px;
   text-align: center;
   border: 1px ${Colors.mediumGrey} solid;
   visibility: ${(props) => (props.$isVisible ? "visible" : "hidden")};
@@ -58,4 +56,14 @@ const StyledBingoTile = styled.td<{ $color: TileColor; $isVisible: boolean }>`
   &:hover {
     background: ${(props) => tileColorToRgb(props.$color, true)};
   }
+`;
+
+const GoalDiv = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height ${StyleConsts.squareHeight - 1}px;
+  min-width: ${StyleConsts.squareWidth - 1}px;
+  padding: 0 5px;
 `;
