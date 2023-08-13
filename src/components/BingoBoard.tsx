@@ -5,8 +5,7 @@ import { useExploBoard } from "../hooks/useExploBoard";
 import { ClickToReveal } from "./ClickTo";
 import styled, { css } from "styled-components";
 import { BingoInfo } from "./BingoInfo";
-import { getBingoList } from "oot-bingo-lists";
-import { generateBingoBoard } from "oot-bingo-generator";
+import { generateBingoBoardFromVersion } from "oot-bingo-lists";
 import { getStartTiles } from "../lib/startingTileModes";
 import { Options } from "../lib/parseUrlParams";
 import { StyleConsts } from "../GlobalStyle";
@@ -22,8 +21,7 @@ export const BingoBoard: React.FC<BoardProps> = ({ options }) => {
 
   const goalNames = useMemo(() => {
     const explorationSeed = seed + 1765913;
-    const bingoList = getBingoList(version);
-    const board = generateBingoBoard(bingoList, mode, explorationSeed);
+    const board = generateBingoBoardFromVersion(version, mode, explorationSeed);
     return board?.goalNames || [];
   }, [seed, mode, version]);
 
