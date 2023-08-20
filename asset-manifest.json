@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/exploration-bingo/static/js/main.da8998c8.js",
+    "main.js": "/exploration-bingo/static/js/main.cc4e1ad6.js",
     "index.html": "/exploration-bingo/index.html",
-    "main.da8998c8.js.map": "/exploration-bingo/static/js/main.da8998c8.js.map"
+    "main.cc4e1ad6.js.map": "/exploration-bingo/static/js/main.cc4e1ad6.js.map"
   },
   "entrypoints": [
-    "static/js/main.da8998c8.js"
+    "static/js/main.cc4e1ad6.js"
   ]
 }
