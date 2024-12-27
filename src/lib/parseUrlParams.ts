@@ -17,6 +17,8 @@ export const parseUrlParams = (urlParams: URLSearchParams, updateUrl?: boolean):
   const urlVersion = urlParams.get("version") ?? "";
   const version = isBingoVersion(urlVersion) ? urlVersion : latestBingoVersion;
 
+  console.log(latestBingoVersion);
+
   const urlMode = urlParams.get("mode");
   const mode = toExplorationMode(urlMode);
 
